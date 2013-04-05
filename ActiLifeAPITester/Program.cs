@@ -183,12 +183,26 @@ namespace ActiLifeAPITester
 				else
 					obj = j[key.ToLower()];
 
-				if (obj == null) return defaultValue;
+				if (obj == null) throw new ArgumentException("Unable to locate JSON token: \"" + key + "\"");
+
+				T returnObj = default(T);
 
 				if (obj is Newtonsoft.Json.Linq.JArray)
-					return obj.ToObject<T>();
+					returnObj = obj.ToObject<T>();
 				else
-					return obj.Value<T>();
+					returnObj = obj.Value<T>();
+
+				//Convert UTC datetimes back to local system time.  API is ISO8601; UTC is used!
+				if (returnObj is DateTime)
+					returnObj = Cast<T>(Convert.ToDateTime(returnObj).ToLocalTime());
+
+				return returnObj;
+
+			}
+			/// <summary>Method used to dynamically cast (through reflection) one type to another type (object to a correct type).</summary>
+			public static T Cast<T>(object o)
+			{
+				return (T)o;
 			}
 		}
 
