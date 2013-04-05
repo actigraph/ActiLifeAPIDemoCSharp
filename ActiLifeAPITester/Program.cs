@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ActiLifeAPITester.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -56,7 +57,8 @@ namespace ActiLifeAPITester
 				 new API.Tests.ActiLifeVersionTest(),
 				 new API.Tests.APIVersionTest(),
 				 new API.Tests.ActiLifeMinimize(),
-				 new API.Tests.ActiLifeRestore()
+				 new API.Tests.ActiLifeRestore(),
+                 //new API.Tests.ActiLifeNHANESWtv()
 			};
 
 			for (int i = 0; i < tests.Count; i++)
@@ -149,7 +151,7 @@ namespace ActiLifeAPITester
 				protected set;
 			}
 
-			dynamic _json = null;
+            dynamic _json = null;
 			public virtual dynamic GetJSON()
 			{
 				if (_json == null)
@@ -190,47 +192,79 @@ namespace ActiLifeAPITester
 			}
 		}
 
-		public class Tests
-		{
-			public class ActiLifeVersionTest : TestBase
-			{
-				public ActiLifeVersionTest()
-					: base("ActiLifeVersion", new { Action = "ActiLifeVersion" })
-				{ }
+	    public class Tests
+	    {
+	        public class ActiLifeVersionTest : TestBase
+	        {
+	            public ActiLifeVersionTest()
+	                : base("ActiLifeVersion", new {Action = "ActiLifeVersion"})
+	            {
+	            }
 
-				protected override bool IsValidPayload(JToken payload)
-				{
-					return GetValueFromJToken<string>(payload, "version", null) != null;
-				}
-			}
-			public class APIVersionTest : TestBase
-			{
-				public APIVersionTest()
-					: base("APIVersion", new { Action = "APIVersion" })
-				{
+	            protected override bool IsValidPayload(JToken payload)
+	            {
+	                return GetValueFromJToken<string>(payload, "version", null) != null;
+	            }
+	        }
 
-				}
-				protected override bool IsValidPayload(JToken payload)
-				{
-					return GetValueFromJToken<string>(payload, "version", null) != null;
-				}
-			}
-			public class ActiLifeRestore : TestBase
-			{
-				public ActiLifeRestore()
-					: base("ActiLifeRestore", new { Action ="ActiLifeRestore"})
-				{
+	        public class APIVersionTest : TestBase
+	        {
+	            public APIVersionTest()
+	                : base("APIVersion", new {Action = "APIVersion"})
+	            {
 
-				}
-			}
-			public class ActiLifeMinimize : TestBase
-			{
-				public ActiLifeMinimize()
-					:base ("ActiLifeMinimize", new { Action = "ActiLifeMinimize"})
-				{
+	            }
 
-				}
-			}
-		}
+	            protected override bool IsValidPayload(JToken payload)
+	            {
+	                return GetValueFromJToken<string>(payload, "version", null) != null;
+	            }
+	        }
+
+	        public class ActiLifeRestore : TestBase
+	        {
+	            public ActiLifeRestore()
+	                : base("ActiLifeRestore", new {Action = "ActiLifeRestore"})
+	            {
+
+	            }
+	        }
+
+	        public class ActiLifeMinimize : TestBase
+	        {
+	            public ActiLifeMinimize()
+	                : base("ActiLifeMinimize", new {Action = "ActiLifeMinimize"})
+	            {
+
+	            }
+	        }
+
+	        public class ActiLifeNHANESWtv : TestBase
+	        {
+                public ActiLifeNHANESWtv()
+                    : base("nhaneswtv")
+	            {
+	            }
+
+                public override dynamic GetJSON()
+                {
+                    return new
+                        {
+                            Action = "nhaneswtv",
+                            args = new { filename = @"C:\Users\daniel.judge\Desktop\nhanes unit test files\gzip\daniel in japan60sec.agd" }
+                        };
+                }
+                protected override bool IsValidPayload(JToken payload)
+                {
+                    if (!base.IsValidPayload(payload)) return false;
+
+                    dynamic d = this.GetValueFromJToken<dynamic>(payload, "results", null);
+
+                    if (d == null || d.AllBouts == null || d.AllBouts.Count == 0) return false;
+
+                    return true;
+                }
+	        }
+	    }
 	}
 }
