@@ -2,35 +2,31 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Pipes;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ActiLifeAPITester.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace ActiLifeAPITester
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			Trace.Listeners.Add(new ConsoleTraceListener(false));
 
 			APITest api = new APITest();
 			api.RunTests();
 
-
 			Console.WriteLine("Press any key to continue....");
 			Console.ReadKey();
 		}
 	}
 
-	class APITest
+	internal class APITest
 	{
-		NamedPipeClientStream _pipe = null;
+		private NamedPipeClientStream _pipe = null;
 
-		void Connect()
+		private void Connect()
 		{
 			Trace.WriteLine("Connecting to ActiLife...");
 
@@ -59,6 +55,8 @@ namespace ActiLifeAPITester
 				 new API.Tests.ActiLifeMinimize(),
 				 new API.Tests.ActiLifeRestore(),
                  //new API.Tests.ActiLifeNHANESWtv()
+				 new API.TestWaitForConsolePrompt(),
+				 new API.Tests.ActiLifeQuit()
 			};
 
 			for (int i = 0; i < tests.Count; i++)
@@ -68,21 +66,28 @@ namespace ActiLifeAPITester
 				Trace.WriteLine(string.Format("Running test {0} of {1}: \"{2}\"", i, tests.Count, t.Name));
 				Trace.Indent();
 
-				SendData(GetJSON(t.GetJSON()));
+				bool passed = false;
 
-				bool passed = t.IsValidResponse(ReceiveData());
+				var testjson = t.GetJSON();
+				if (testjson != null)
+				{
+					SendData(GetJSON(testjson));
+					passed = t.IsValidResponse(ReceiveData());
+				}
+				else 
+					passed = t.IsValidResponse(null);
 
 				Trace.Unindent();
 				Trace.WriteLine("Test " + (passed ? "passed" : "failed"));
 			}
 		}
 
-
-		string GetJSON(dynamic d)
+		private string GetJSON(dynamic d)
 		{
 			return JsonConvert.SerializeObject(d);
 		}
-		bool SendData(string json)
+
+		private bool SendData(string json)
 		{
 			if (_pipe != null && _pipe.IsConnected)
 			{
@@ -99,7 +104,7 @@ namespace ActiLifeAPITester
 			return false;
 		}
 
-		JObject ReceiveData()
+		private JObject ReceiveData()
 		{
 			StringBuilder mb = new StringBuilder();
 
@@ -112,7 +117,6 @@ namespace ActiLifeAPITester
 
 				if (byteCount != 0)
 					mb.Append(System.Text.Encoding.UTF8.GetString(buff, 0, byteCount));
-
 			} while (!_pipe.IsMessageComplete && _pipe.IsConnected);
 
 			Trace.WriteLine("Received " + mb.ToString());
@@ -122,25 +126,50 @@ namespace ActiLifeAPITester
 			return null;
 		}
 	}
+
 	namespace API
 	{
-		interface IApiTest
+		internal interface IApiTest
 		{
 			string Name { get; }
+
 			dynamic GetJSON();
+
 			bool IsValidResponse(JObject d);
+		}
+
+		public class TestWaitForConsolePrompt : IApiTest
+		{
+
+			#region IApiTest Members
+
+			public string Name
+			{
+				get { return "Waiting To Send Next Command..."; }
+			}
+
+			public dynamic GetJSON() {
+				Console.WriteLine("Press any key to continue...");
+				Console.ReadKey();
+
+				return null;
+			}
+
+			public bool IsValidResponse(JObject d) { return true; }
+
+			#endregion
 		}
 
 		public class TestBase : IApiTest
 		{
-			public TestBase(string name)
+
+			public TestBase(dynamic json)
 			{
-				Name = name;
-			}
-			public TestBase(string name, dynamic json)
-			{
-				Name = name;
 				_json = json;
+
+				if (json != null)
+					try { Name = json.Action; }
+					catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) { }
 			}
 
 			#region IApiTest Members
@@ -151,7 +180,8 @@ namespace ActiLifeAPITester
 				protected set;
 			}
 
-            dynamic _json = null;
+			private dynamic _json = null;
+
 			public virtual dynamic GetJSON()
 			{
 				if (_json == null)
@@ -171,9 +201,13 @@ namespace ActiLifeAPITester
 
 				return true;
 			}
-			protected virtual bool IsValidPayload(JToken payload) { if (payload == null) return false; return true; }
 
-			#endregion
+			protected virtual bool IsValidPayload(JToken payload)
+			{
+				if (payload == null) return false; return true;
+			}
+
+			#endregion IApiTest Members
 
 			public T GetValueFromJToken<T>(Newtonsoft.Json.Linq.JToken j, string key, T defaultValue)
 			{
@@ -197,8 +231,8 @@ namespace ActiLifeAPITester
 					returnObj = Cast<T>(Convert.ToDateTime(returnObj).ToLocalTime());
 
 				return returnObj;
-
 			}
+
 			/// <summary>Method used to dynamically cast (through reflection) one type to another type (object to a correct type).</summary>
 			public static T Cast<T>(object o)
 			{
@@ -206,79 +240,73 @@ namespace ActiLifeAPITester
 			}
 		}
 
-	    public class Tests
-	    {
-	        public class ActiLifeVersionTest : TestBase
-	        {
-	            public ActiLifeVersionTest()
-	                : base("ActiLifeVersion", new {Action = "ActiLifeVersion"})
-	            {
-	            }
+		public class Tests
+		{
+			public class ActiLifeVersionTest : TestBase
+			{
+				public ActiLifeVersionTest()
+					: base(new { Action = "ActiLifeVersion" }) { }
+				protected override bool IsValidPayload(JToken payload)
+				{
+					return GetValueFromJToken<string>(payload, "version", null) != null;
+				}
+			}
 
-	            protected override bool IsValidPayload(JToken payload)
-	            {
-	                return GetValueFromJToken<string>(payload, "version", null) != null;
-	            }
-	        }
+			public class APIVersionTest : TestBase
+			{
+				public APIVersionTest()
+					: base(new { Action = "APIVersion" }) { }
+				protected override bool IsValidPayload(JToken payload)
+				{
+					return GetValueFromJToken<string>(payload, "version", null) != null;
+				}
+			}
 
-	        public class APIVersionTest : TestBase
-	        {
-	            public APIVersionTest()
-	                : base("APIVersion", new {Action = "APIVersion"})
-	            {
+			public class ActiLifeRestore : TestBase
+			{
+				public ActiLifeRestore()
+					: base(new { Action = "ActiLifeRestore" }) {}
+			}
 
-	            }
+			public class ActiLifeMinimize : TestBase
+			{
+				public ActiLifeMinimize()
+					: base(new { Action = "ActiLifeMinimize" }) { }
+			}
 
-	            protected override bool IsValidPayload(JToken payload)
-	            {
-	                return GetValueFromJToken<string>(payload, "version", null) != null;
-	            }
-	        }
+			public class ActiLifeQuit : TestBase
+			{
+				public ActiLifeQuit()
+					: base(new { Action = "ActiLifeQuit" }) { }
+			}
 
-	        public class ActiLifeRestore : TestBase
-	        {
-	            public ActiLifeRestore()
-	                : base("ActiLifeRestore", new {Action = "ActiLifeRestore"})
-	            {
+			public class ActiLifeNHANESWtv : TestBase
+			{
+				public ActiLifeNHANESWtv()
+					: base("nhaneswtv")
+				{
+				}
 
-	            }
-	        }
+				public override dynamic GetJSON()
+				{
+					return new
+						{
+							Action = "nhaneswtv",
+							args = new { filename = @"C:\Users\daniel.judge\Desktop\nhanes unit test files\gzip\daniel in japan60sec.agd" }
+						};
+				}
 
-	        public class ActiLifeMinimize : TestBase
-	        {
-	            public ActiLifeMinimize()
-	                : base("ActiLifeMinimize", new {Action = "ActiLifeMinimize"})
-	            {
+				protected override bool IsValidPayload(JToken payload)
+				{
+					if (!base.IsValidPayload(payload)) return false;
 
-	            }
-	        }
+					dynamic d = this.GetValueFromJToken<dynamic>(payload, "results", null);
 
-	        public class ActiLifeNHANESWtv : TestBase
-	        {
-                public ActiLifeNHANESWtv()
-                    : base("nhaneswtv")
-	            {
-	            }
+					if (d == null || d.AllBouts == null || d.AllBouts.Count == 0) return false;
 
-                public override dynamic GetJSON()
-                {
-                    return new
-                        {
-                            Action = "nhaneswtv",
-                            args = new { filename = @"C:\Users\daniel.judge\Desktop\nhanes unit test files\gzip\daniel in japan60sec.agd" }
-                        };
-                }
-                protected override bool IsValidPayload(JToken payload)
-                {
-                    if (!base.IsValidPayload(payload)) return false;
-
-                    dynamic d = this.GetValueFromJToken<dynamic>(payload, "results", null);
-
-                    if (d == null || d.AllBouts == null || d.AllBouts.Count == 0) return false;
-
-                    return true;
-                }
-	        }
-	    }
+					return true;
+				}
+			}
+		}
 	}
 }
