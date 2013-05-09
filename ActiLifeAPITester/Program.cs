@@ -54,7 +54,7 @@ namespace ActiLifeAPITester
 				 new API.Tests.APIVersionTest(),
 				 new API.Tests.ActiLifeMinimize(),
 				 new API.Tests.ActiLifeRestore(),
-                 //new API.Tests.ActiLifeNHANESWtv()
+				 //new API.Tests.ActiLifeNHANESWtv(),
 				 new API.TestWaitForConsolePrompt(),
 				 new API.Tests.ActiLifeQuit()
 			};
@@ -289,10 +289,12 @@ namespace ActiLifeAPITester
 
 				public override dynamic GetJSON()
 				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
 					return new
 						{
 							Action = "nhaneswtv",
-							args = new { filename = @"C:\Users\daniel.judge\Desktop\nhanes unit test files\gzip\daniel in japan60sec.agd" }
+							args = new { filename = System.IO.Path.Combine(assemblyDir, "input.gt3x") }
 						};
 				}
 
@@ -302,7 +304,7 @@ namespace ActiLifeAPITester
 
 					dynamic d = this.GetValueFromJToken<dynamic>(payload, "results", null);
 
-					if (d == null || d.AllBouts == null || d.AllBouts.Count == 0) return false;
+					if (d == null || d.NonWearBouts == null) return false;
 
 					return true;
 				}
