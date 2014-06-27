@@ -55,7 +55,7 @@ namespace ActiLifeAPITester
 				 new API.Tests.ActiLifeMinimize(),
 				 new API.Tests.ActiLifeRestore(),
 				 //new API.Tests.ActiLifeNHANESWtv(),
-				 //new API.Tests.ActiLifeDataScoring(),
+				 new API.Tests.ActiLifeDataScoring(),
 				 new API.TestWaitForConsolePrompt(),
 				 new API.Tests.ActiLifeQuit()
 			};
@@ -324,14 +324,18 @@ namespace ActiLifeAPITester
 					{
 						Action = "datascoring",
 						args = new 
-						{ 
-							filename = System.IO.Path.Combine(assemblyDir, "input.agd"),
-							ee = true,
-							mets = true,
-							cutPoints = true,
-							bouts = true,
-							sedentary = true,
-							stats = true
+						{
+							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
+							UseWTVData = true,
+							UseLogDiaries = false,
+							CalculateEnergyExpenditure = true,
+							CalculateMETs = true,
+							CalculateCutPoints = true,
+							CalculateBouts = true,
+							CalculateSedentaryAnalysis = true,
+							IncludeExtraStatistics = true,
+							IncludeDailyResults = false,
+							IncludeHourlyResults = false
 						}
 					};
 				}
