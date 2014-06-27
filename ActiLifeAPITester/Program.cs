@@ -55,6 +55,7 @@ namespace ActiLifeAPITester
 				 new API.Tests.ActiLifeMinimize(),
 				 new API.Tests.ActiLifeRestore(),
 				 //new API.Tests.ActiLifeNHANESWtv(),
+				 new API.Tests.ActiLifeDataScoring(),
 				 new API.TestWaitForConsolePrompt(),
 				 new API.Tests.ActiLifeQuit()
 			};
@@ -245,7 +246,8 @@ namespace ActiLifeAPITester
 			public class ActiLifeVersionTest : TestBase
 			{
 				public ActiLifeVersionTest()
-					: base(new { Action = "ActiLifeVersion" }) { }
+					: base(new {Action = "ActiLifeVersion"}) { }
+
 				protected override bool IsValidPayload(JToken payload)
 				{
 					return GetValueFromJToken<string>(payload, "version", null) != null;
@@ -255,7 +257,8 @@ namespace ActiLifeAPITester
 			public class APIVersionTest : TestBase
 			{
 				public APIVersionTest()
-					: base(new { Action = "APIVersion" }) { }
+					: base(new {Action = "APIVersion"}) { }
+
 				protected override bool IsValidPayload(JToken payload)
 				{
 					return GetValueFromJToken<string>(payload, "version", null) != null;
@@ -265,37 +268,35 @@ namespace ActiLifeAPITester
 			public class ActiLifeRestore : TestBase
 			{
 				public ActiLifeRestore()
-					: base(new { Action = "ActiLifeRestore" }) {}
+					: base(new {Action = "ActiLifeRestore"}) { }
 			}
 
 			public class ActiLifeMinimize : TestBase
 			{
 				public ActiLifeMinimize()
-					: base(new { Action = "ActiLifeMinimize" }) { }
+					: base(new {Action = "ActiLifeMinimize"}) { }
 			}
 
 			public class ActiLifeQuit : TestBase
 			{
 				public ActiLifeQuit()
-					: base(new { Action = "ActiLifeQuit" }) { }
+					: base(new {Action = "ActiLifeQuit"}) { }
 			}
 
 			public class ActiLifeNHANESWtv : TestBase
 			{
 				public ActiLifeNHANESWtv()
-					: base("nhaneswtv")
-				{
-				}
+					: base("nhaneswtv")  { }
 
 				public override dynamic GetJSON()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
 					return new
-						{
-							Action = "nhaneswtv",
-							args = new { filename = System.IO.Path.Combine(assemblyDir, "input.gt3x") }
-						};
+					{
+						Action = "nhaneswtv",
+						args = new {filename = System.IO.Path.Combine(assemblyDir, "input.gt3x")}
+					};
 				}
 
 				protected override bool IsValidPayload(JToken payload)
@@ -307,6 +308,32 @@ namespace ActiLifeAPITester
 					if (d == null || d.NonWearBouts == null) return false;
 
 					return true;
+				}
+			}
+
+			public class ActiLifeDataScoring : TestBase
+			{
+				public ActiLifeDataScoring()
+					: base("datascoring") { }
+
+				public override dynamic GetJSON()
+				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+					return new
+					{
+						Action = "datascoring",
+						args = new 
+						{ 
+							filename = System.IO.Path.Combine(assemblyDir, "input.agd"),
+							ee = true,
+							mets = true,
+							cutPoints = true,
+							bouts = true,
+							sedentary = true,
+							stats = true
+						}
+					};
 				}
 			}
 		}
