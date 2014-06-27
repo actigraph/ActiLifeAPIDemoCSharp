@@ -55,7 +55,7 @@ namespace ActiLifeAPITester
 				 new API.Tests.ActiLifeMinimize(),
 				 new API.Tests.ActiLifeRestore(),
 				 //new API.Tests.ActiLifeNHANESWtv(),
-				 new API.Tests.ActiLifeDataScoring(),
+				 //new API.Tests.ActiLifeDataScoring(),
 				 new API.TestWaitForConsolePrompt(),
 				 new API.Tests.ActiLifeQuit()
 			};
