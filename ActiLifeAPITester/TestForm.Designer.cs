@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
 			this.btnPopulateTest = new System.Windows.Forms.Button();
@@ -39,16 +40,17 @@
 			this.grpConnection = new System.Windows.Forms.GroupBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
 			this.btnConnect = new System.Windows.Forms.Button();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.pnlSendReceive = new System.Windows.Forms.SplitContainer();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.lblResponseStatus = new System.Windows.Forms.Label();
+			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-			this.splitContainer1.Panel1.SuspendLayout();
-			this.splitContainer1.Panel2.SuspendLayout();
-			this.splitContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).BeginInit();
+			this.pnlSendReceive.Panel1.SuspendLayout();
+			this.pnlSendReceive.Panel2.SuspendLayout();
+			this.pnlSendReceive.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
@@ -171,29 +173,30 @@
 			this.btnConnect.Text = "Connect";
 			this.btnConnect.UseVisualStyleBackColor = true;
 			// 
-			// splitContainer1
+			// pnlSendReceive
 			// 
-			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.pnlSendReceive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.splitContainer1.Location = new System.Drawing.Point(12, 66);
-			this.splitContainer1.Name = "splitContainer1";
-			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			this.pnlSendReceive.Enabled = false;
+			this.pnlSendReceive.Location = new System.Drawing.Point(12, 66);
+			this.pnlSendReceive.Name = "pnlSendReceive";
+			this.pnlSendReceive.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
-			// splitContainer1.Panel1
+			// pnlSendReceive.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.txtRequest);
-			this.splitContainer1.Panel1.Controls.Add(this.panel1);
-			this.splitContainer1.Panel1.Controls.Add(this.label1);
+			this.pnlSendReceive.Panel1.Controls.Add(this.txtRequest);
+			this.pnlSendReceive.Panel1.Controls.Add(this.panel1);
+			this.pnlSendReceive.Panel1.Controls.Add(this.label1);
 			// 
-			// splitContainer1.Panel2
+			// pnlSendReceive.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-			this.splitContainer1.Panel2.Controls.Add(this.txtResponse);
-			this.splitContainer1.Panel2.Controls.Add(this.label2);
-			this.splitContainer1.Size = new System.Drawing.Size(840, 362);
-			this.splitContainer1.SplitterDistance = 171;
-			this.splitContainer1.TabIndex = 8;
+			this.pnlSendReceive.Panel2.Controls.Add(this.flowLayoutPanel1);
+			this.pnlSendReceive.Panel2.Controls.Add(this.txtResponse);
+			this.pnlSendReceive.Panel2.Controls.Add(this.label2);
+			this.pnlSendReceive.Size = new System.Drawing.Size(840, 362);
+			this.pnlSendReceive.SplitterDistance = 171;
+			this.pnlSendReceive.TabIndex = 8;
 			// 
 			// panel1
 			// 
@@ -225,6 +228,11 @@
 			this.lblResponseStatus.Size = new System.Drawing.Size(0, 38);
 			this.lblResponseStatus.TabIndex = 6;
 			// 
+			// tmrConnected
+			// 
+			this.tmrConnected.Enabled = true;
+			this.tmrConnected.Interval = 500;
+			// 
 			// TestForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,19 +240,19 @@
 			this.ClientSize = new System.Drawing.Size(864, 440);
 			this.Controls.Add(this.grpConnection);
 			this.Controls.Add(this.grpTests);
-			this.Controls.Add(this.splitContainer1);
+			this.Controls.Add(this.pnlSendReceive);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MinimumSize = new System.Drawing.Size(880, 479);
 			this.Name = "TestForm";
 			this.Text = "ActiLife API Test Window";
 			this.grpTests.ResumeLayout(false);
 			this.grpConnection.ResumeLayout(false);
-			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel1.PerformLayout();
-			this.splitContainer1.Panel2.ResumeLayout(false);
-			this.splitContainer1.Panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-			this.splitContainer1.ResumeLayout(false);
+			this.pnlSendReceive.Panel1.ResumeLayout(false);
+			this.pnlSendReceive.Panel1.PerformLayout();
+			this.pnlSendReceive.Panel2.ResumeLayout(false);
+			this.pnlSendReceive.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).EndInit();
+			this.pnlSendReceive.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
@@ -263,11 +271,12 @@
 		private System.Windows.Forms.TextBox txtResponse;
 		private System.Windows.Forms.Button btnSend;
 		private System.Windows.Forms.GroupBox grpConnection;
-		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.SplitContainer pnlSendReceive;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblConnectionStatus;
 		private System.Windows.Forms.Button btnConnect;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Label lblResponseStatus;
+		private System.Windows.Forms.Timer tmrConnected;
 	}
 }
