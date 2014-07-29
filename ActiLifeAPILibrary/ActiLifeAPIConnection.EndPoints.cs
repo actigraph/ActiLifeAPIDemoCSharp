@@ -15,6 +15,31 @@ namespace ActiLifeAPILibrary
 			return await SendData(new Models.Request.RequestBase { Action = "ActiLifeVersion" }.ToJson());
 		}
 
+        async public Task<string> GetAPIVersion()
+        {
+            return await SendData(new Models.Request.RequestBase { Action = "APIVersion" }.ToJson());
+        }
+
+        async public Task<string> MinimizeActiLife()
+        {
+            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeMinimize" }.ToJson());
+        }
+
+        async public Task<string> RestoreActiLife()
+        {
+            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeRestore" }.ToJson());
+        }
+
+        async public Task<string> QuitActiLife()
+        {
+            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeQuit" }.ToJson());
+        }
+
+        async public Task<string> NhanesWearTimeValidation(string fileName)
+        {
+            return await SendData(new Models.Request.RequestBase { Action = "NHANESWTV", Args = JsonConvert.SerializeObject(new NhanesWtv(fileName), Formatting.Indented) }.ToJson());
+        }
+
 	    public async Task<string> GetDataScoringResults(string fileName)
         {
             DataScoring d = new DataScoring
