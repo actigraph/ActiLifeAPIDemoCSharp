@@ -8,11 +8,13 @@ namespace ActiLifeAPILibrary.Models.Request
 {
 	public class RequestBase
 	{
+		[JsonProperty(Required = Newtonsoft.Json.Required.Always)]
 		/// <summary>
 		/// Action of the request (the endpoint).
 		/// </summary>
 		public virtual string Action { get; set; }
 
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		/// <summary>
 		/// Arguments of the request.  This is how to control parameters of the Action.
 		/// </summary>
