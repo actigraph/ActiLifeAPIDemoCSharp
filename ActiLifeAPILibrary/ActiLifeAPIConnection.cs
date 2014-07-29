@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace ActiLifeAPILibrary
 {
-    public partial class ActiLifeAPIConnection : IDisposable
-    {
+	public partial class ActiLifeAPIConnection : IDisposable
+	{
 		public ActiLifeAPIConnection()
 		{
 
 		}
 
 		private NamedPipeClientStream _pipe = null;
+		object _lock = new object();
 
 		public void Connect()
 		{
@@ -23,9 +24,12 @@ namespace ActiLifeAPILibrary
 
 			try
 			{
-				_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
-				_pipe.Connect();
-				_pipe.ReadMode = PipeTransmissionMode.Message; //important!
+				lock (_lock)
+				{
+					_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
+					_pipe.Connect();
+					_pipe.ReadMode = PipeTransmissionMode.Message; //important!
+				}
 
 				Trace.WriteLine("Connected!");
 			}
@@ -34,7 +38,11 @@ namespace ActiLifeAPILibrary
 
 		public bool IsConnected
 		{
-			get { return _pipe != null && _pipe.IsConnected; }
+			get
+			{
+				lock (_lock)
+					return _pipe != null && _pipe.IsConnected;
+			}
 		}
 
 		public async Task<string> SendData(string json)
@@ -43,15 +51,21 @@ namespace ActiLifeAPILibrary
 			{
 				Trace.WriteLine("Sending " + json);
 
-				try
+				lock (_lock)
 				{
-					//going to assume unicode here because we might have out of US customers using the API
-					byte[] replyBytes = Encoding.UTF8.GetBytes(json);
+					//check status again while in lock
+					if (!IsConnected) throw new Exceptions.APIConnectionException("API is not connected!");
 
-					_pipe.Write(replyBytes, 0, replyBytes.Length);
-					_pipe.WaitForPipeDrain();
+					try
+					{
+						//going to assume unicode here because we might have out of US customers using the API
+						byte[] replyBytes = Encoding.UTF8.GetBytes(json);
+
+						_pipe.Write(replyBytes, 0, replyBytes.Length);
+						_pipe.WaitForPipeDrain();
+					}
+					catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
 				}
-				catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
 
 				return await ReceiveData();
 			}
@@ -64,26 +78,31 @@ namespace ActiLifeAPILibrary
 			{
 				StringBuilder mb = new StringBuilder();
 
-				try
+				lock (_lock)
 				{
-					// read one message from the server
-					int byteCount = 0;
-					byte[] buff = new byte[1024];
-					do
+					//check status again while in lock
+					if (!IsConnected) throw new Exceptions.APIConnectionException("API is not connected!");
+
+					try
 					{
-						byteCount = _pipe.Read(buff, 0, buff.Length);
+						// read one message from the server
+						int byteCount = 0;
+						byte[] buff = new byte[1024];
+						do
+						{
+							byteCount = _pipe.Read(buff, 0, buff.Length);
 
-						if (byteCount != 0)
-							mb.Append(System.Text.Encoding.UTF8.GetString(buff, 0, byteCount));
-					} while (IsConnected && !_pipe.IsMessageComplete);
+							if (byteCount != 0)
+								mb.Append(System.Text.Encoding.UTF8.GetString(buff, 0, byteCount));
+						} while (IsConnected && !_pipe.IsMessageComplete);
+					}
+					catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
 				}
-				catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
-
 				Trace.WriteLine("Received " + mb.ToString());
 
 				if (IsConnected)
 					return mb.ToString();
-				return null;
+				throw new Exceptions.APIConnectionException("API is not connected!");
 			});
 		}
 
@@ -91,8 +110,9 @@ namespace ActiLifeAPILibrary
 
 		public void Dispose()
 		{
-			if (_pipe != null)
-				_pipe.Dispose();
+			lock (_lock)
+				if (_pipe != null)
+					_pipe.Dispose();
 		}
 
 		#endregion
