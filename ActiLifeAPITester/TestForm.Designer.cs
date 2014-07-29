@@ -89,10 +89,11 @@
 			// 
 			this.txtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtRequest.Location = new System.Drawing.Point(0, 28);
+			this.txtRequest.MaxLength = 0;
 			this.txtRequest.Multiline = true;
 			this.txtRequest.Name = "txtRequest";
 			this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtRequest.Size = new System.Drawing.Size(840, 110);
+			this.txtRequest.Size = new System.Drawing.Size(840, 109);
 			this.txtRequest.TabIndex = 2;
 			// 
 			// label1
@@ -122,11 +123,12 @@
 			// 
 			this.txtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtResponse.Location = new System.Drawing.Point(0, 38);
+			this.txtResponse.MaxLength = 0;
 			this.txtResponse.Multiline = true;
 			this.txtResponse.Name = "txtResponse";
 			this.txtResponse.ReadOnly = true;
 			this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtResponse.Size = new System.Drawing.Size(840, 149);
+			this.txtResponse.Size = new System.Drawing.Size(840, 150);
 			this.txtResponse.TabIndex = 5;
 			// 
 			// btnSend
@@ -195,14 +197,14 @@
 			this.pnlSendReceive.Panel2.Controls.Add(this.txtResponse);
 			this.pnlSendReceive.Panel2.Controls.Add(this.label2);
 			this.pnlSendReceive.Size = new System.Drawing.Size(840, 362);
-			this.pnlSendReceive.SplitterDistance = 171;
+			this.pnlSendReceive.SplitterDistance = 170;
 			this.pnlSendReceive.TabIndex = 8;
 			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.btnSend);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 138);
+			this.panel1.Location = new System.Drawing.Point(0, 137);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(840, 33);
 			this.panel1.TabIndex = 7;

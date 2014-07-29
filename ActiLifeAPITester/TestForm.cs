@@ -27,18 +27,44 @@ namespace ActiLifeAPITester
 				{
 					if (_api != null && _api.IsConnecting)
 						lblConnectionStatus.Text = "Connecting...";
-					else 
+					else
 						lblConnectionStatus.Text = "Disconnected.";
 
 					pnlSendReceive.Enabled = false;
 				}
 			};
 
+			txtRequest.TextChanged += (o, e) => { btnSend.Enabled = txtRequest.TextLength != 0; };
+
 			btnConnect.Click += async (o, e) =>
 			{
 				if (_api == null) return;
 
 				await _api.Connect();
+			};
+
+			btnSend.Click += async (o, e) =>
+			{
+				lblResponseStatus.Text = "";
+
+				if (_api == null) return;
+				if (txtRequest.TextLength == 0) return;
+
+				txtResponse.AppendText((txtResponse.TextLength != 0 ? "\r\n\r\n" : "") + "REQUEST: \r\n" + txtRequest.Text + "\r\n\r\n");
+
+				var task = _api.SendData(txtRequest.Text);
+				string response = await task;
+
+				if (task.IsFaulted || task.IsCanceled)
+				{
+					if (task.Exception != null)
+						MessageBox.Show(this, task.Exception.ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					else
+						lblResponseStatus.Text = "Issue Sending Request!";
+				}
+
+				txtResponse.AppendText("RESPONSE: \r\n" + response);
+				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
 		}
 
