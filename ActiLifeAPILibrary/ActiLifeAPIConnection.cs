@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ActiLifeAPILibrary
 {
-    public class ActiLifeAPIConnection
+    public partial class ActiLifeAPIConnection
     {
 		public ActiLifeAPIConnection()
 		{
