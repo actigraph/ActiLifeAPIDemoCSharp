@@ -66,10 +66,11 @@
 			// 
 			// grpTests
 			// 
+			this.grpTests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.grpTests.Controls.Add(this.btnPopulateTest);
 			this.grpTests.Controls.Add(this.comboBox1);
 			this.grpTests.Enabled = false;
-			this.grpTests.Location = new System.Drawing.Point(12, 12);
+			this.grpTests.Location = new System.Drawing.Point(494, 6);
 			this.grpTests.Name = "grpTests";
 			this.grpTests.Size = new System.Drawing.Size(358, 47);
 			this.grpTests.TabIndex = 1;
@@ -149,7 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.grpConnection.Controls.Add(this.lblConnectionStatus);
 			this.grpConnection.Controls.Add(this.btnConnect);
-			this.grpConnection.Location = new System.Drawing.Point(525, 12);
+			this.grpConnection.Location = new System.Drawing.Point(12, 6);
 			this.grpConnection.Name = "grpConnection";
 			this.grpConnection.Size = new System.Drawing.Size(326, 47);
 			this.grpConnection.TabIndex = 7;

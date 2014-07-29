@@ -81,7 +81,7 @@ namespace ActiLifeAPITester
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
 
-			this.HandleCreated += (o, e) => FillAPITests();
+			this.HandleCreated += (o, e) => { FillAPITests(); btnConnect.Focus(); };
 			btnPopulateTest.Click += (o, e) => PopulateAPITestSelected();
 		}
 
