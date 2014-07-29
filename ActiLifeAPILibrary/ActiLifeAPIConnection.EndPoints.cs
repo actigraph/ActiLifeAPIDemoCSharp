@@ -37,7 +37,7 @@ namespace ActiLifeAPILibrary
 
         async public Task<string> NhanesWearTimeValidation(string fileName)
         {
-            return await SendData(new Models.Request.RequestBase { Action = "NHANESWTV", Args = JsonConvert.SerializeObject(new NhanesWtv(fileName), Formatting.Indented) }.ToJson());
+            return await SendData(new Models.Request.RequestBase { Action = "NHANESWTV", Args = new NhanesWtv(fileName)}.ToJson());
         }
 
 	    public async Task<string> GetDataScoringResults(string fileName)
@@ -58,7 +58,7 @@ namespace ActiLifeAPILibrary
                 ResultOptions = new ResultOptions()
             };
 
-	        return await SendData(new Models.Request.RequestBase {Action = "DataScoring", Args = JsonConvert.SerializeObject(d, Formatting.Indented)}.ToJson());
+	        return await SendData(new Models.Request.RequestBase {Action = "DataScoring", Args = d }.ToJson());
         }
 	}
 }

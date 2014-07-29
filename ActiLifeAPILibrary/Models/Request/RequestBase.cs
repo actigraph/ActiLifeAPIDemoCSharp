@@ -18,7 +18,7 @@ namespace ActiLifeAPILibrary.Models.Request
 		/// Arguments of the request.  This is how to control parameters of the Action.
 		/// </summary>
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-		public virtual string Args { get; set; }
+		public virtual dynamic Args { get; set; }
 
 		/// <summary>
 		/// Obtains JSON for the given request.
