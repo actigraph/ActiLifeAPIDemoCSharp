@@ -30,19 +30,19 @@
 		{
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
+			this.btnPopulateTest = new System.Windows.Forms.Button();
 			this.txtRequest = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtResponse = new System.Windows.Forms.TextBox();
 			this.btnSend = new System.Windows.Forms.Button();
-			this.btnPopulateTest = new System.Windows.Forms.Button();
 			this.grpConnection = new System.Windows.Forms.GroupBox();
+			this.lblConnectionStatus = new System.Windows.Forms.Label();
+			this.btnConnect = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.btnConnect = new System.Windows.Forms.Button();
-			this.lblConnectionStatus = new System.Windows.Forms.Label();
-			this.lblResponseStatus = new System.Windows.Forms.Label();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.lblResponseStatus = new System.Windows.Forms.Label();
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -72,6 +72,15 @@
 			this.grpTests.TabIndex = 1;
 			this.grpTests.TabStop = false;
 			this.grpTests.Text = "Built In Tests";
+			// 
+			// btnPopulateTest
+			// 
+			this.btnPopulateTest.Location = new System.Drawing.Point(274, 17);
+			this.btnPopulateTest.Name = "btnPopulateTest";
+			this.btnPopulateTest.Size = new System.Drawing.Size(75, 23);
+			this.btnPopulateTest.TabIndex = 1;
+			this.btnPopulateTest.Text = "Populate";
+			this.btnPopulateTest.UseVisualStyleBackColor = true;
 			// 
 			// txtRequest
 			// 
@@ -128,15 +137,6 @@
 			this.btnSend.Text = "Send Request";
 			this.btnSend.UseVisualStyleBackColor = true;
 			// 
-			// btnPopulateTest
-			// 
-			this.btnPopulateTest.Location = new System.Drawing.Point(274, 17);
-			this.btnPopulateTest.Name = "btnPopulateTest";
-			this.btnPopulateTest.Size = new System.Drawing.Size(75, 23);
-			this.btnPopulateTest.TabIndex = 1;
-			this.btnPopulateTest.Text = "Populate";
-			this.btnPopulateTest.UseVisualStyleBackColor = true;
-			// 
 			// grpConnection
 			// 
 			this.grpConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -149,6 +149,25 @@
 			this.grpConnection.TabIndex = 7;
 			this.grpConnection.TabStop = false;
 			this.grpConnection.Text = "Connection Status";
+			// 
+			// lblConnectionStatus
+			// 
+			this.lblConnectionStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblConnectionStatus.Location = new System.Drawing.Point(88, 22);
+			this.lblConnectionStatus.Name = "lblConnectionStatus";
+			this.lblConnectionStatus.Size = new System.Drawing.Size(232, 13);
+			this.lblConnectionStatus.TabIndex = 1;
+			// 
+			// btnConnect
+			// 
+			this.btnConnect.Location = new System.Drawing.Point(6, 17);
+			this.btnConnect.Name = "btnConnect";
+			this.btnConnect.Size = new System.Drawing.Size(75, 23);
+			this.btnConnect.TabIndex = 0;
+			this.btnConnect.Text = "Connect";
+			this.btnConnect.UseVisualStyleBackColor = true;
 			// 
 			// splitContainer1
 			// 
@@ -183,35 +202,6 @@
 			this.panel1.Size = new System.Drawing.Size(840, 33);
 			this.panel1.TabIndex = 7;
 			// 
-			// btnConnect
-			// 
-			this.btnConnect.Location = new System.Drawing.Point(6, 17);
-			this.btnConnect.Name = "btnConnect";
-			this.btnConnect.Size = new System.Drawing.Size(75, 23);
-			this.btnConnect.TabIndex = 0;
-			this.btnConnect.Text = "Connect";
-			this.btnConnect.UseVisualStyleBackColor = true;
-			// 
-			// lblConnectionStatus
-			// 
-			this.lblConnectionStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblConnectionStatus.Location = new System.Drawing.Point(88, 22);
-			this.lblConnectionStatus.Name = "lblConnectionStatus";
-			this.lblConnectionStatus.Size = new System.Drawing.Size(232, 13);
-			this.lblConnectionStatus.TabIndex = 1;
-			// 
-			// lblResponseStatus
-			// 
-			this.lblResponseStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblResponseStatus.AutoSize = true;
-			this.lblResponseStatus.Location = new System.Drawing.Point(652, 0);
-			this.lblResponseStatus.Name = "lblResponseStatus";
-			this.lblResponseStatus.Padding = new System.Windows.Forms.Padding(0, 15, 0, 10);
-			this.lblResponseStatus.Size = new System.Drawing.Size(0, 38);
-			this.lblResponseStatus.TabIndex = 6;
-			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -222,6 +212,16 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 38);
 			this.flowLayoutPanel1.TabIndex = 7;
+			// 
+			// lblResponseStatus
+			// 
+			this.lblResponseStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblResponseStatus.AutoSize = true;
+			this.lblResponseStatus.Location = new System.Drawing.Point(652, 0);
+			this.lblResponseStatus.Name = "lblResponseStatus";
+			this.lblResponseStatus.Padding = new System.Windows.Forms.Padding(0, 15, 0, 10);
+			this.lblResponseStatus.Size = new System.Drawing.Size(0, 38);
+			this.lblResponseStatus.TabIndex = 6;
 			// 
 			// TestForm
 			// 
