@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace ActiLifeAPITester
 {
@@ -79,7 +80,7 @@ namespace ActiLifeAPITester
 				}
 				catch (AggregateException ex) { MessageBox.Show(this, ex.Flatten().ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-				txtResponse.AppendText("RESPONSE: \r\n" + response);
+				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
 
@@ -93,6 +94,13 @@ namespace ActiLifeAPITester
 		{
 			_api = api;
 		}
+
+		public string GetPrettyPrintedJson(string json)
+		{
+			dynamic parsedJson = JsonConvert.DeserializeObject(json);
+			return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+		}
+
 
 		#region "Unit Tests"
 
