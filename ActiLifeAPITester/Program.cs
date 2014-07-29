@@ -79,7 +79,7 @@ namespace ActiLifeAPITester
 
 			if (ex != null)
 			{
-				if (MessageBox.Show(ex.ToString(), "Unhandled Exception.  Continue?") != DialogResult.Yes)
+				if (MessageBox.Show(ex.ToString(), "Unhandled Exception.  Continue?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
 				{
 					Application.Exit();
 					Environment.Exit(-1);
