@@ -20,17 +20,19 @@ namespace ActiLifeAPILibrary
 
 		public async Task Connect()
 		{
-			Trace.WriteLine("Connecting to ActiLife...");
-
-			new TaskFactory().StartNew(() =>
+			await TaskEx.Run(() =>
 			{
+				Trace.WriteLine("Connecting to ActiLife...");
 				try
 				{
 					lock (_lock)
 					{
-						_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
+						if (_pipe == null)
+						{
+							_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
+							_pipe.ReadMode = PipeTransmissionMode.Message; //important!
+						}
 						_pipe.Connect();
-						_pipe.ReadMode = PipeTransmissionMode.Message; //important!
 					}
 
 					Trace.WriteLine("Connected!");
@@ -43,8 +45,7 @@ namespace ActiLifeAPILibrary
 		{
 			get
 			{
-				lock (_lock)
-					return _pipe != null && _pipe.IsConnected;
+				return _pipe != null && _pipe.IsConnected;
 			}
 		}
 
@@ -52,32 +53,34 @@ namespace ActiLifeAPILibrary
 		{
 			if (IsConnected)
 			{
-				Trace.WriteLine("Sending " + json);
-
-				lock (_lock)
+				await TaskEx.Run(() =>
 				{
-					//check status again while in lock
-					if (!IsConnected) throw new Exceptions.APIConnectionException("API is not connected!");
-
-					try
+					Trace.WriteLine("Sending " + json);
+					lock (_lock)
 					{
-						//going to assume unicode here because we might have out of US customers using the API
-						byte[] replyBytes = Encoding.UTF8.GetBytes(json);
+						//check status again while in lock
+						if (!IsConnected) throw new Exceptions.APIConnectionException("API is not connected!");
 
-						_pipe.Write(replyBytes, 0, replyBytes.Length);
-						_pipe.WaitForPipeDrain();
+						try
+						{
+							//going to assume unicode here because we might have out of US customers using the API
+							byte[] replyBytes = Encoding.UTF8.GetBytes(json);
+
+							_pipe.Write(replyBytes, 0, replyBytes.Length);
+							_pipe.WaitForPipeDrain();
+						}
+						catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
 					}
-					catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to send data. \"" + ex.Message + "\"", ex); }
-				}
+				});
 
 				return await ReceiveData();
 			}
 			return null;
 		}
 
-		private Task<string> ReceiveData()
+		private async Task<string> ReceiveData()
 		{
-			return new TaskFactory<string>().StartNew(() =>
+			return await TaskEx.Run<string>(() =>
 			{
 				StringBuilder mb = new StringBuilder();
 
