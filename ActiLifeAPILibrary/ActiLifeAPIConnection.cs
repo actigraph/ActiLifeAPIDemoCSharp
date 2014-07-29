@@ -28,11 +28,14 @@ namespace ActiLifeAPILibrary
 					lock (_lock)
 					{
 						if (_pipe == null)
-						{
 							_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
-							_pipe.ReadMode = PipeTransmissionMode.Message; //important!
-						}
+
+						IsConnecting = true;
+
 						_pipe.Connect();
+						_pipe.ReadMode = PipeTransmissionMode.Message; //important!
+
+						IsConnecting = false;
 					}
 
 					Trace.WriteLine("Connected!");
@@ -48,6 +51,7 @@ namespace ActiLifeAPILibrary
 				return _pipe != null && _pipe.IsConnected;
 			}
 		}
+		public bool IsConnecting { get; protected set; }
 
 		public async Task<string> SendData(string json)
 		{
