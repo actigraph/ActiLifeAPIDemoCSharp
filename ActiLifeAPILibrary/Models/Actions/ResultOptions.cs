@@ -9,16 +9,23 @@ namespace ActiLifeAPILibrary.Models.Actions
         /// <summary> If enabled, total results will be calculated for each algorithm. </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue(true)]
-        public virtual bool IncludeTotalResults { get; set; }
+        public bool IncludeTotalResults { get; set; }
 
         /// <summary> If enabled, daily results will be calculated for each algorithm. </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue(false)]
-        public virtual bool IncludeDailyResults { get; set; }
+        public bool IncludeDailyResults { get; set; }
 
         /// <summary> If enabled, hourly results will be calculated for each algorithm. </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue(false)]
-        public virtual bool IncludeHourlyResults { get; set; }
+        public bool IncludeHourlyResults { get; set; }
+
+        public ResultOptions()
+        {
+            IncludeTotalResults = true;
+            IncludeDailyResults = false;
+            IncludeHourlyResults = false;
+        }
     }
 }

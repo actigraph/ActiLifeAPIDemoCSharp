@@ -9,6 +9,11 @@ namespace ActiLifeAPILibrary.Models.Actions
         /// <summary> Which energy expenditure algorithm to use. </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue("FreedsonSingleCombination")]
-        public virtual string Algorithm { get; set; }
+        public string Algorithm { get; set; }
+
+        public EnergyExpenditureOptions()
+        {
+            Algorithm = "FreedsonSingleCombination";
+        }
     }
 }

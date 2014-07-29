@@ -10,5 +10,10 @@ namespace ActiLifeAPILibrary.Models.Actions
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue("FreedsonEEAdult")]
         public virtual string Algorithm { get; set; }
+
+        public METOptions()
+        {
+            Algorithm = "FreedsonEEAdult";
+        }
     }
 }
