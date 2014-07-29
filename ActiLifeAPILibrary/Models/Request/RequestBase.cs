@@ -7,17 +7,17 @@ using Newtonsoft.Json;
 namespace ActiLifeAPILibrary.Models.Request
 {
 	public class RequestBase
-	{
-		[JsonProperty(Required = Newtonsoft.Json.Required.Always)]
-		/// <summary>
-		/// Action of the request (the endpoint).
-		/// </summary>
+    {
+        /// <summary>
+        /// Action of the request (the endpoint).
+        /// </summary>
+		[JsonProperty(Required = Required.Always)]
 		public virtual string Action { get; set; }
 
-		[JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
-		/// <summary>
-		/// Arguments of the request.  This is how to control parameters of the Action.
-		/// </summary>
+        /// <summary>
+        /// Arguments of the request.  This is how to control parameters of the Action.
+        /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public virtual string Args { get; set; }
 
 		/// <summary>
