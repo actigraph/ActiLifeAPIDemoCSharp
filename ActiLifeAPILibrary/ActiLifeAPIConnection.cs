@@ -18,22 +18,25 @@ namespace ActiLifeAPILibrary
 		private NamedPipeClientStream _pipe = null;
 		object _lock = new object();
 
-		public void Connect()
+		public async Task Connect()
 		{
 			Trace.WriteLine("Connecting to ActiLife...");
 
-			try
+			new TaskFactory().StartNew(() =>
 			{
-				lock (_lock)
+				try
 				{
-					_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
-					_pipe.Connect();
-					_pipe.ReadMode = PipeTransmissionMode.Message; //important!
-				}
+					lock (_lock)
+					{
+						_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
+						_pipe.Connect();
+						_pipe.ReadMode = PipeTransmissionMode.Message; //important!
+					}
 
-				Trace.WriteLine("Connected!");
-			}
-			catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to connect. \"" + ex.Message + "\"", ex); }
+					Trace.WriteLine("Connected!");
+				}
+				catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to connect. \"" + ex.Message + "\"", ex); }
+			});
 		}
 
 		public bool IsConnected
