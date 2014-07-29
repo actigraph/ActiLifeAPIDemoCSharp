@@ -20,8 +20,17 @@ namespace ActiLifeAPILibrary
             DataScoring d = new DataScoring
             {
                 FileInputPath = fileName,
+                FilterOptions = new FilterOptions(),
                 CalculateEnergyExpenditure = true,
-                ResultOptions = new ResultOptions {IncludeTotalResults = true}
+                EnergyExpenditureOptions = new EnergyExpenditureOptions(),
+                CalculateMETs = false,
+                METOptions = new METOptions(),
+                CalculateCutPoints = false,
+                CutPointOptions = new CutPointOptions(),
+                CalculateBouts = false,
+                CalculateSedentaryAnalysis = false,
+                IncludeExtraStatistics = false,
+                ResultOptions = new ResultOptions()
             };
 
 	        return await SendData(new Models.Request.RequestBase {Action = "DataScoring", Args = JsonConvert.SerializeObject(d, Formatting.Indented)}.ToJson());
