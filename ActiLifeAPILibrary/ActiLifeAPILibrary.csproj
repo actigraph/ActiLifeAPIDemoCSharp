@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="ActiLifeAPIConnection.cs" />
     <Compile Include="ActiLifeAPIConnection.EndPoints.cs" />
+    <Compile Include="Converters.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\Actions\CutPointOptions.cs" />
     <Compile Include="Models\Actions\DataScoring.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Models\Actions\FilterOptions.cs" />
     <Compile Include="Models\Actions\METOptions.cs" />
     <Compile Include="Models\Actions\ResultOptions.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
