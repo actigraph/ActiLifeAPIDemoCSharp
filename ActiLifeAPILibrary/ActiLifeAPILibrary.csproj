@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="ActiLifeAPIConnection.cs" />
     <Compile Include="ActiLifeAPIConnection.EndPoints.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
