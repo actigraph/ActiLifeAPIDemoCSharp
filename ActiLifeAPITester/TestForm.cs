@@ -24,6 +24,7 @@ namespace ActiLifeAPITester
 				{
 					lblConnectionStatus.Text = "Connected to ActiLife";
 					pnlSendReceive.Enabled = true;
+					grpTests.Enabled = true;
 				}
 				else
 				{
@@ -33,6 +34,7 @@ namespace ActiLifeAPITester
 						lblConnectionStatus.Text = "Disconnected.";
 
 					pnlSendReceive.Enabled = false;
+					grpTests.Enabled = false;
 				}
 			};
 
@@ -78,6 +80,9 @@ namespace ActiLifeAPITester
 				txtResponse.AppendText("RESPONSE: \r\n" + response);
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
+
+			this.HandleCreated += (o, e) => FillAPITests();
+			btnPopulateTest.Click += (o, e) => PopulateAPITestSelected();
 		}
 
 		ActiLifeAPILibrary.ActiLifeAPIConnection _api;
@@ -86,6 +91,42 @@ namespace ActiLifeAPITester
 		{
 			_api = api;
 		}
+
+		#region "Unit Tests"
+
+		void FillAPITests()
+		{
+			comboBox1.FormattingEnabled = true;
+			comboBox1.Format += (s, args) =>
+			{
+				if (args.DesiredType != typeof(string)) return;
+
+				args.Value = args.Value.GetType().Name;
+			};
+
+			foreach (var tests in (from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
+								   where t.GetInterfaces().Contains(typeof(ActiLifeAPITester.API.IApiTest))
+											&& t.GetConstructor(Type.EmptyTypes) != null
+								   select Activator.CreateInstance(t) as ActiLifeAPITester.API.IApiTest))
+				comboBox1.Items.Add(tests);
+
+			if (comboBox1.Items.Count != 0)
+				comboBox1.SelectedIndex = 0;
+		}
+
+		void PopulateAPITestSelected()
+		{
+			if (comboBox1.Items.Count == 0) return;
+			if (comboBox1.SelectedItem == null) return;
+
+			ActiLifeAPITester.API.IApiTest test = comboBox1.SelectedItem as ActiLifeAPITester.API.IApiTest;
+			if (test == null) return;
+
+			txtRequest.Text = test.GetJSON();
+			txtRequest.Focus();
+		}
+
+		#endregion "Unit Tests"
 
 		/// <summary>
 		/// Allows the TextBox to handle CTRL+Backspace (delete word) and CTRL+Enter (send command)
