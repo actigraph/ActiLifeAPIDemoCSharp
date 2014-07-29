@@ -62,7 +62,7 @@
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Location = new System.Drawing.Point(6, 19);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(262, 21);
+			this.comboBox1.Size = new System.Drawing.Size(261, 21);
 			this.comboBox1.TabIndex = 0;
 			// 
 			// grpTests
@@ -80,12 +80,14 @@
 			// 
 			// btnPopulateTest
 			// 
-			this.btnPopulateTest.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btnPopulateTest.Location = new System.Drawing.Point(274, 17);
+			this.btnPopulateTest.AutoSize = true;
+			this.btnPopulateTest.Image = global::ActiLifeAPITester.Properties.Resources.wand;
+			this.btnPopulateTest.Location = new System.Drawing.Point(273, 17);
 			this.btnPopulateTest.Name = "btnPopulateTest";
-			this.btnPopulateTest.Size = new System.Drawing.Size(75, 23);
+			this.btnPopulateTest.Size = new System.Drawing.Size(79, 23);
 			this.btnPopulateTest.TabIndex = 1;
 			this.btnPopulateTest.Text = "Populate";
+			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnPopulateTest.UseVisualStyleBackColor = true;
 			// 
 			// txtRequest
@@ -137,12 +139,14 @@
 			// btnSend
 			// 
 			this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btnSend.Image = global::ActiLifeAPITester.Properties.Resources.send_receive_all_folders;
 			this.btnSend.Location = new System.Drawing.Point(267, 4);
 			this.btnSend.Name = "btnSend";
 			this.btnSend.Size = new System.Drawing.Size(307, 25);
 			this.btnSend.TabIndex = 6;
 			this.btnSend.Text = "Send Request";
+			this.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnSend.UseVisualStyleBackColor = true;
 			// 
 			// grpConnection
@@ -170,12 +174,15 @@
 			// 
 			// btnConnect
 			// 
-			this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btnConnect.AutoSize = true;
+			this.btnConnect.Image = global::ActiLifeAPITester.Properties.Resources.connect;
+			this.btnConnect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnConnect.Location = new System.Drawing.Point(6, 17);
 			this.btnConnect.Name = "btnConnect";
-			this.btnConnect.Size = new System.Drawing.Size(75, 23);
+			this.btnConnect.Size = new System.Drawing.Size(76, 23);
 			this.btnConnect.TabIndex = 0;
 			this.btnConnect.Text = "Connect";
+			this.btnConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnConnect.UseVisualStyleBackColor = true;
 			// 
 			// pnlSendReceive
@@ -252,7 +259,9 @@
 			this.Name = "TestForm";
 			this.Text = "ActiLife API Test Window";
 			this.grpTests.ResumeLayout(false);
+			this.grpTests.PerformLayout();
 			this.grpConnection.ResumeLayout(false);
+			this.grpConnection.PerformLayout();
 			this.pnlSendReceive.Panel1.ResumeLayout(false);
 			this.pnlSendReceive.Panel1.PerformLayout();
 			this.pnlSendReceive.Panel2.ResumeLayout(false);
