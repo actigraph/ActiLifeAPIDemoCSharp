@@ -105,9 +105,9 @@ namespace ActiLifeAPITester
 			};
 
 			foreach (var tests in (from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
-								   where t.GetInterfaces().Contains(typeof(ActiLifeAPITester.API.IApiTest))
+								   where t.GetInterfaces().Contains(typeof(Tests.IApiTest))
 											&& t.GetConstructor(Type.EmptyTypes) != null
-								   select Activator.CreateInstance(t) as ActiLifeAPITester.API.IApiTest))
+								   select Activator.CreateInstance(t) as Tests.IApiTest))
 				comboBox1.Items.Add(tests);
 
 			if (comboBox1.Items.Count != 0)
@@ -119,7 +119,7 @@ namespace ActiLifeAPITester
 			if (comboBox1.Items.Count == 0) return;
 			if (comboBox1.SelectedItem == null) return;
 
-			ActiLifeAPITester.API.IApiTest test = comboBox1.SelectedItem as ActiLifeAPITester.API.IApiTest;
+			Tests.IApiTest test = comboBox1.SelectedItem as Tests.IApiTest;
 			if (test == null) return;
 
 			txtRequest.Text = test.GetJSON();
