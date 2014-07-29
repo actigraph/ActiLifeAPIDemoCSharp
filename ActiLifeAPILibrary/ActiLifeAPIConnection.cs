@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ActiLifeAPILibrary
 {
-    public partial class ActiLifeAPIConnection
+    public partial class ActiLifeAPIConnection : IDisposable
     {
 		public ActiLifeAPIConnection()
 		{
@@ -86,5 +86,15 @@ namespace ActiLifeAPILibrary
 				return null;
 			});
 		}
-    }
+
+		#region IDisposable Members
+
+		public void Dispose()
+		{
+			if (_pipe != null)
+				_pipe.Dispose();
+		}
+
+		#endregion
+	}
 }
