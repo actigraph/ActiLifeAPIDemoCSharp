@@ -23,12 +23,15 @@ namespace ActiLifeAPITester
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			// Set the unhandled exception mode to force all Windows Forms errors to go through our handler.
-			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
-			// Add the event handler for handling UI thread exceptions to the event.
-			Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-			// Add the event handler for handling non-UI thread exceptions to the event.
-			AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+			if (!System.Diagnostics.Debugger.IsAttached)
+			{
+				// Set the unhandled exception mode to force all Windows Forms errors to go through our handler.
+				Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
+				// Add the event handler for handling UI thread exceptions to the event.
+				Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+				// Add the event handler for handling non-UI thread exceptions to the event.
+				AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+			}
 
 			#endregion GUI Buildup
 
