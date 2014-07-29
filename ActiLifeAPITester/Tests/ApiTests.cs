@@ -33,7 +33,10 @@ namespace ActiLifeAPITester.Tests
 
 		public abstract class TestBase : IApiTest
 		{
+			public TestBase()
+			{
 
+			}
 			public TestBase(dynamic json)
 			{
 				_json = json;
@@ -53,13 +56,30 @@ namespace ActiLifeAPITester.Tests
 
 			private dynamic _json = null;
 
-			public virtual string GetJSON()
+			public string GetJSON()
 			{
 				if (_json == null)
-					throw new NotImplementedException();
+				{
+					_json = GetJSONInternal();
+					if (_json == null)
+						throw new NotImplementedException();
+				}
 
-				return JsonConvert.SerializeObject(_json);
+				JsonSerializerSettings dateFormattingSettings = new JsonSerializerSettings
+				{
+					Formatting = Newtonsoft.Json.Formatting.Indented,
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+					Converters = new List<JsonConverter>() { new ActiLifeAPILibrary.Converters.JSONCustomDateConverter() }
+				};
+
+				return JsonConvert.SerializeObject(_json, dateFormattingSettings);
 			}
+			/// <summary>
+			/// Internal method that provides JSON to this base class on demand.
+			/// </summary>
+			/// <returns></returns>
+			protected virtual dynamic GetJSONInternal() { return null; }
 
 			public virtual bool IsValidResponse(JObject d)
 			{
@@ -156,18 +176,17 @@ namespace ActiLifeAPITester.Tests
 
 			public class ActiLifeNHANESWtv : TestBase
 			{
-				public ActiLifeNHANESWtv()
-					: base("nhaneswtv") { }
+				public ActiLifeNHANESWtv() : base() { }
 
-				public override string GetJSON()
+				protected override dynamic GetJSONInternal()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-					return JsonConvert.SerializeObject(new
+					return new
 					{
 						Action = "nhaneswtv",
 						args = new { filename = System.IO.Path.Combine(assemblyDir, "input.gt3x") }
-					});
+					};
 				}
 
 				protected override bool IsValidPayload(JToken payload)
@@ -184,14 +203,13 @@ namespace ActiLifeAPITester.Tests
 
 			public class ActiLifeDataScoring : TestBase
 			{
-				public ActiLifeDataScoring()
-					: base("datascoring") { }
+				public ActiLifeDataScoring() : base() { }
 
-				public override string GetJSON()
+				protected override dynamic GetJSONInternal()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-					return JsonConvert.SerializeObject(new
+					return new
 					{
 						Action = "datascoring",
 						args = new
@@ -208,7 +226,7 @@ namespace ActiLifeAPITester.Tests
 							IncludeDailyResults = false,
 							IncludeHourlyResults = false
 						}
-					});
+					};
 				}
 			}
 		}
