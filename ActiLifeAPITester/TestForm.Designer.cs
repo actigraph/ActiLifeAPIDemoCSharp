@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
 			this.btnPopulateTest = new System.Windows.Forms.Button();
@@ -246,6 +247,7 @@
 			this.Controls.Add(this.grpTests);
 			this.Controls.Add(this.pnlSendReceive);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(880, 479);
 			this.Name = "TestForm";
 			this.Text = "ActiLife API Test Window";
