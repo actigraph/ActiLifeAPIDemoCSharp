@@ -25,6 +25,7 @@ namespace ActiLifeAPITester
 					lblConnectionStatus.Text = "Connected to ActiLife";
 					pnlSendReceive.Enabled = true;
 					grpTests.Enabled = true;
+					btnConnect.Enabled = false;
 				}
 				else
 				{
@@ -35,6 +36,7 @@ namespace ActiLifeAPITester
 
 					pnlSendReceive.Enabled = false;
 					grpTests.Enabled = false;
+					btnConnect.Enabled = true;
 				}
 			};
 
