@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.Text;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,117 +15,15 @@ namespace ActiLifeAPITester
 		{
 			Trace.Listeners.Add(new ConsoleTraceListener(false));
 
-			APITest api = new APITest();
-			api.RunTests();
+			// pretty forms
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
+			using (TestForm t = new TestForm())
+				Application.Run(t);
 
 			Console.WriteLine("Press any key to continue....");
 			Console.ReadKey();
-		}
-	}
-
-	internal class APITest
-	{
-		private NamedPipeClientStream _pipe = null;
-
-		private void Connect()
-		{
-			Trace.WriteLine("Connecting to ActiLife...");
-
-			_pipe = new NamedPipeClientStream(".", "actilifeapi", PipeDirection.InOut);
-			_pipe.Connect();
-			_pipe.ReadMode = PipeTransmissionMode.Message; //important!
-
-			Trace.WriteLine("Connected!");
-		}
-
-		public bool IsConnected
-		{
-			get { return _pipe != null && _pipe.IsConnected; }
-		}
-
-		public void RunTests()
-		{
-			Trace.WriteLine("Running Tests...");
-
-			if (!IsConnected) Connect();
-
-			List<ActiLifeAPITester.API.IApiTest> tests = new List<API.IApiTest>
-			{
-				 new API.Tests.ActiLifeVersionTest(),
-				 new API.Tests.APIVersionTest(),
-				 new API.Tests.ActiLifeMinimize(),
-				 new API.Tests.ActiLifeRestore(),
-				 //new API.Tests.ActiLifeNHANESWtv(),
-				 new API.Tests.ActiLifeDataScoring(),
-				 new API.TestWaitForConsolePrompt(),
-				 new API.Tests.ActiLifeQuit()
-			};
-
-			for (int i = 0; i < tests.Count; i++)
-			{
-				var t = tests[i];
-
-				Trace.WriteLine(string.Format("Running test {0} of {1}: \"{2}\"", i, tests.Count, t.Name));
-				Trace.Indent();
-
-				bool passed = false;
-
-				var testjson = t.GetJSON();
-				if (testjson != null)
-				{
-					SendData(GetJSON(testjson));
-					passed = t.IsValidResponse(ReceiveData());
-				}
-				else 
-					passed = t.IsValidResponse(null);
-
-				Trace.Unindent();
-				Trace.WriteLine("Test " + (passed ? "passed" : "failed"));
-			}
-		}
-
-		private string GetJSON(dynamic d)
-		{
-			return JsonConvert.SerializeObject(d);
-		}
-
-		private bool SendData(string json)
-		{
-			if (_pipe != null && _pipe.IsConnected)
-			{
-				Trace.WriteLine("Sending " + json);
-
-				//going to assume unicode here because we might have out of US customers using the API
-				byte[] replyBytes = Encoding.UTF8.GetBytes(json);
-
-				_pipe.Write(replyBytes, 0, replyBytes.Length);
-				_pipe.WaitForPipeDrain();
-
-				return true;
-			}
-			return false;
-		}
-
-		private JObject ReceiveData()
-		{
-			StringBuilder mb = new StringBuilder();
-
-			// read one message from the server
-			int byteCount = 0;
-			byte[] buff = new byte[1024];
-			do
-			{
-				byteCount = _pipe.Read(buff, 0, buff.Length);
-
-				if (byteCount != 0)
-					mb.Append(System.Text.Encoding.UTF8.GetString(buff, 0, byteCount));
-			} while (!_pipe.IsMessageComplete && _pipe.IsConnected);
-
-			Trace.WriteLine("Received " + mb.ToString());
-
-			if (_pipe.IsConnected)
-				return JObject.Parse(mb.ToString());
-			return null;
 		}
 	}
 

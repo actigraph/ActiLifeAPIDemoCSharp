@@ -75,6 +75,7 @@
 			// 
 			// btnPopulateTest
 			// 
+			this.btnPopulateTest.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.btnPopulateTest.Location = new System.Drawing.Point(274, 17);
 			this.btnPopulateTest.Name = "btnPopulateTest";
 			this.btnPopulateTest.Size = new System.Drawing.Size(75, 23);
@@ -89,7 +90,7 @@
 			this.txtRequest.Multiline = true;
 			this.txtRequest.Name = "txtRequest";
 			this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtRequest.Size = new System.Drawing.Size(840, 115);
+			this.txtRequest.Size = new System.Drawing.Size(840, 110);
 			this.txtRequest.TabIndex = 2;
 			// 
 			// label1
@@ -123,7 +124,7 @@
 			this.txtResponse.Name = "txtResponse";
 			this.txtResponse.ReadOnly = true;
 			this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtResponse.Size = new System.Drawing.Size(840, 154);
+			this.txtResponse.Size = new System.Drawing.Size(840, 149);
 			this.txtResponse.TabIndex = 5;
 			// 
 			// btnSend
@@ -162,6 +163,7 @@
 			// 
 			// btnConnect
 			// 
+			this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.btnConnect.Location = new System.Drawing.Point(6, 17);
 			this.btnConnect.Name = "btnConnect";
 			this.btnConnect.Size = new System.Drawing.Size(75, 23);
@@ -189,15 +191,15 @@
 			this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
 			this.splitContainer1.Panel2.Controls.Add(this.txtResponse);
 			this.splitContainer1.Panel2.Controls.Add(this.label2);
-			this.splitContainer1.Size = new System.Drawing.Size(840, 372);
-			this.splitContainer1.SplitterDistance = 176;
+			this.splitContainer1.Size = new System.Drawing.Size(840, 362);
+			this.splitContainer1.SplitterDistance = 171;
 			this.splitContainer1.TabIndex = 8;
 			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.btnSend);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 143);
+			this.panel1.Location = new System.Drawing.Point(0, 138);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(840, 33);
 			this.panel1.TabIndex = 7;
