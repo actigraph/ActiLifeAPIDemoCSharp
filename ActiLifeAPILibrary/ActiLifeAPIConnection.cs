@@ -18,9 +18,9 @@ namespace ActiLifeAPILibrary
 		private NamedPipeClientStream _pipe = null;
 		object _lock = new object();
 
-		public async Task Connect()
+		public async Task<bool> Connect()
 		{
-			await TaskEx.Run(() =>
+			return await TaskEx.Run(() =>
 			{
 				Trace.WriteLine("Connecting to ActiLife...");
 				try
@@ -41,6 +41,8 @@ namespace ActiLifeAPILibrary
 					Trace.WriteLine("Connected!");
 				}
 				catch (Exception ex) { throw new Exceptions.APIConnectionException("Unable to connect. \"" + ex.Message + "\"", ex); }
+
+				return IsConnected;
 			});
 		}
 
