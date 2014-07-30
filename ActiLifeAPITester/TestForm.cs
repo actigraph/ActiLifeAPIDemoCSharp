@@ -184,6 +184,7 @@ namespace ActiLifeAPITester
 					}
 					break;
 				case (Keys.Enter | Keys.Control):
+                case Keys.F5:
 					e.SuppressKeyPress = true;
 					btnSend.PerformClick();
 					break;
