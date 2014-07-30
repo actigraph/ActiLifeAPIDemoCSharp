@@ -240,6 +240,38 @@ namespace ActiLifeAPITester.Tests
 					}.ToJson();
 				}
 			}
+
+			public class USBList : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.USBList().ToJson();
+				}
+			}
+
+			public class USBInitialize : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.USBInitialize
+					{
+						Serial = "MOS123456789",
+						BioData = new ActiLifeAPILibrary.Models.Actions.BioData { SubjectName = "Subject123" },
+						InitOptions = new ActiLifeAPILibrary.Models.Actions.InitOptions { SubjectName = "Subject123" }
+					}.ToJson();
+				}
+			}
+
+			public class USBIdentify : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.USBIdentify
+					{
+						Serial = "MOS123456789"
+					}.ToJson();
+				}
+			}
 		}
 	}
 }
