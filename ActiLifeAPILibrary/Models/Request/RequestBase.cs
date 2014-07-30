@@ -28,11 +28,12 @@ namespace ActiLifeAPILibrary.Models.Request
 		{
 			JsonSerializerSettings dateFormattingSettings = new JsonSerializerSettings
 				{
+					Formatting = Newtonsoft.Json.Formatting.Indented,
 					DateFormatHandling = DateFormatHandling.IsoDateFormat,
 					DateTimeZoneHandling = DateTimeZoneHandling.Utc,
 					Converters = new List<JsonConverter>() { new ActiLifeAPILibrary.Converters.JSONCustomDateConverter() }
 				};
-			return JsonConvert.SerializeObject(this, dateFormattingSettings) + "\r\n";
+			return JsonConvert.SerializeObject(this, dateFormattingSettings);
 		}
 	}
 }
