@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +85,39 @@ namespace ActiLifeAPITester
 				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
-			clearLogToolStripMenuItem.Click += (o, e) => { txtResponse.Clear(); };
+
+            #region response right click menu
+            
+            var contextMenuStrip = new ContextMenuStrip();
+            var clearLogMenu = new ToolStripMenuItem { Text = "&Clear Log" };
+            var saveLogMenu = new ToolStripMenuItem { Text = "&Save Log to File..." };
+            clearLogMenu.Click += (obj, sender) => txtResponse.Clear();
+            saveLogMenu.Click += (obj, sender) =>
+            {
+                using (var saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "TXT Files (*.txt)|*.txt";
+				    saveFileDialog.Title = "Save to a text File";
+                    var result = saveFileDialog.ShowDialog();
+                    if (result != DialogResult.OK)
+                        return;
+
+                    using (StreamWriter s = new StreamWriter(saveFileDialog.FileName))
+                        s.Write(txtResponse.Text);
+
+                    Process.Start(saveFileDialog.FileName);
+                }
+            };
+            contextMenuStrip.Items.AddRange(new ToolStripItem[] { clearLogMenu, saveLogMenu });
+            
+            txtResponse.ContextMenuStrip = contextMenuStrip;
+            txtResponse.MouseUp += (o, e) =>
+            {
+                if (e.Button == MouseButtons.Right)
+                    contextMenuStrip.Show(txtResponse, new Point(e.X, e.Y));
+            };
+            
+            #endregion response right click menu
 
 			this.HandleCreated += (o, e) => { FillAPITests(); btnConnect.Focus(); };
 			btnPopulateTest.Click += (o, e) => PopulateAPITestSelected();
