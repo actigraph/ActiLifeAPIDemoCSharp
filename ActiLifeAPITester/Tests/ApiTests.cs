@@ -56,11 +56,10 @@ namespace ActiLifeAPITester.Tests
 
 			private dynamic _json = null;
 
-			public string GetJSON()
+			public virtual string GetJSON()
 			{
 				if (_json == null)
 				{
-					_json = GetJSONInternal();
 					if (_json == null)
 						throw new NotImplementedException();
 				}
@@ -75,11 +74,6 @@ namespace ActiLifeAPITester.Tests
 
 				return JsonConvert.SerializeObject(_json, dateFormattingSettings);
 			}
-			/// <summary>
-			/// Internal method that provides JSON to this base class on demand.
-			/// </summary>
-			/// <returns></returns>
-			protected virtual dynamic GetJSONInternal() { return null; }
 
 			public virtual bool IsValidResponse(JObject d)
 			{
@@ -136,8 +130,10 @@ namespace ActiLifeAPITester.Tests
 		{
 			public class ActiLifeVersionTest : TestBase
 			{
-				public ActiLifeVersionTest()
-					: base(new { Action = "ActiLifeVersion" }) { }
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.ActiLifeVersion().ToJson();
+				}
 
 				protected override bool IsValidPayload(JToken payload)
 				{
@@ -147,8 +143,10 @@ namespace ActiLifeAPITester.Tests
 
 			public class APIVersionTest : TestBase
 			{
-				public APIVersionTest()
-					: base(new { Action = "APIVersion" }) { }
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.APIVersion().ToJson();
+				}
 
 				protected override bool IsValidPayload(JToken payload)
 				{
@@ -158,35 +156,43 @@ namespace ActiLifeAPITester.Tests
 
 			public class ActiLifeRestore : TestBase
 			{
-				public ActiLifeRestore()
-					: base(new { Action = "ActiLifeRestore" }) { }
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.ActiLifeRestore().ToJson();
+				}
 			}
 
 			public class ActiLifeMinimize : TestBase
 			{
-				public ActiLifeMinimize()
-					: base(new { Action = "ActiLifeMinimize" }) { }
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.ActiLifeMinimize().ToJson();
+				}
 			}
 
 			public class ActiLifeQuit : TestBase
 			{
-				public ActiLifeQuit()
-					: base(new { Action = "ActiLifeQuit" }) { }
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.ActiLifeQuit().ToJson();
+				}
 			}
 
 			public class ActiLifeNHANESWtv : TestBase
 			{
 				public ActiLifeNHANESWtv() : base() { }
 
-				protected override dynamic GetJSONInternal()
+				public override string GetJSON()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-					return new
+					return new ActiLifeAPILibrary.Models.Request.NHANESWTV
 					{
-						Action = "nhaneswtv",
-						args = new { filename = System.IO.Path.Combine(assemblyDir, "input.gt3x") }
-					};
+						Options = new ActiLifeAPILibrary.Models.Actions.NhanesWtv
+						{
+							Filename = System.IO.Path.Combine(assemblyDir, "input.gt3x")
+						}
+					}.ToJson();
 				}
 
 				protected override bool IsValidPayload(JToken payload)
@@ -205,28 +211,17 @@ namespace ActiLifeAPITester.Tests
 			{
 				public ActiLifeDataScoring() : base() { }
 
-				protected override dynamic GetJSONInternal()
+				public override string GetJSON()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-					return new
+					return new ActiLifeAPILibrary.Models.Request.DataScoring
 					{
-						Action = "datascoring",
-						args = new
+						Options = new ActiLifeAPILibrary.Models.Actions.DataScoring
 						{
-							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
-							UseWTVData = true,
-							UseLogDiaries = false,
-							CalculateEnergyExpenditure = true,
-							CalculateMETs = true,
-							CalculateCutPoints = true,
-							CalculateBouts = true,
-							CalculateSedentaryAnalysis = true,
-							IncludeExtraStatistics = true,
-							IncludeDailyResults = false,
-							IncludeHourlyResults = false
+							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd")
 						}
-					};
+					}.ToJson();
 				}
 			}
 		}

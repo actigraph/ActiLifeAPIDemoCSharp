@@ -10,55 +10,43 @@ namespace ActiLifeAPILibrary
 {
 	public partial class ActiLifeAPIConnection
 	{
-		async public Task<string> GetActiLifeVersion()
+		async public Task<string> ActiLifeVersion()
 		{
-			return await SendData(new Models.Request.RequestBase { Action = "ActiLifeVersion" }.ToJson());
+			return await SendData(new Models.Request.ActiLifeVersion().ToJson());
 		}
 
-        async public Task<string> GetAPIVersion()
+		async public Task<string> APIVersion()
+		{
+			return await SendData(new Models.Request.APIVersion().ToJson());
+		}
+
+		async public Task<string> ActiLifeMinimize()
+		{
+			return await SendData(new Models.Request.ActiLifeMinimize().ToJson());
+		}
+
+		async public Task<string> ActiLifeRestore()
+		{
+			return await SendData(new Models.Request.ActiLifeRestore().ToJson());
+		}
+
+		async public Task<string> ActiLifeQuit()
+		{
+			return await SendData(new Models.Request.ActiLifeQuit().ToJson());
+		}
+
+        async public Task<string> NHANESWTV(Models.Request.NHANESWTV options)
         {
-            return await SendData(new Models.Request.RequestBase { Action = "APIVersion" }.ToJson());
+			if (options == null) throw new NullReferenceException("Must set NHANESWTV options!");
+
+			return await SendData(options.ToJson());
         }
 
-        async public Task<string> MinimizeActiLife()
+	    public async Task<string> DataScoring(Models.Request.DataScoring options)
         {
-            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeMinimize" }.ToJson());
-        }
+			if (options == null) throw new NullReferenceException("Must set DataScoring options!");
 
-        async public Task<string> RestoreActiLife()
-        {
-            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeRestore" }.ToJson());
-        }
-
-        async public Task<string> QuitActiLife()
-        {
-            return await SendData(new Models.Request.RequestBase { Action = "ActiLifeQuit" }.ToJson());
-        }
-
-        async public Task<string> NhanesWearTimeValidation(string fileName)
-        {
-            return await SendData(new Models.Request.RequestBase { Action = "NHANESWTV", Args = new NhanesWtv(fileName)}.ToJson());
-        }
-
-	    public async Task<string> GetDataScoringResults(string fileName)
-        {
-            DataScoring d = new DataScoring
-            {
-                FileInputPath = fileName,
-                FilterOptions = new FilterOptions(),
-                CalculateEnergyExpenditure = true,
-                EnergyExpenditureOptions = new EnergyExpenditureOptions(),
-                CalculateMETs = false,
-                METOptions = new METOptions(),
-                CalculateCutPoints = false,
-                CutPointOptions = new CutPointOptions(),
-                CalculateBouts = false,
-                CalculateSedentaryAnalysis = false,
-                IncludeExtraStatistics = false,
-                ResultOptions = new ResultOptions()
-            };
-
-	        return await SendData(new Models.Request.RequestBase {Action = "DataScoring", Args = d }.ToJson());
+	        return await SendData(options.ToJson());
         }
 	}
 }

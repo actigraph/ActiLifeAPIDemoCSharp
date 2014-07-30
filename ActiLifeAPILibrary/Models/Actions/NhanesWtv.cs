@@ -37,6 +37,11 @@ namespace ActiLifeAPILibrary.Models.Actions
         [DefaultValue(2)]
         public int DropTime { get; set; }
 
+		public NhanesWtv()
+		{
+
+		}
+
         public NhanesWtv(string filename)
         {
             Filename = filename;

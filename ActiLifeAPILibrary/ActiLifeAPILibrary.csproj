@@ -77,7 +77,13 @@
     <Compile Include="Models\Actions\NhanesWtv.cs" />
     <Compile Include="Models\Actions\ResultOptions.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\Request\ActiLifeMinimize.cs" />
+    <Compile Include="Models\Request\ActiLifeQuit.cs" />
+    <Compile Include="Models\Request\ActiLifeRestore.cs" />
+    <Compile Include="Models\Request\ActiLifeVersion.cs" />
+    <Compile Include="Models\Request\APIVersion.cs" />
     <Compile Include="Models\Request\DataScoring.cs" />
+    <Compile Include="Models\Request\NHANESWTV.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

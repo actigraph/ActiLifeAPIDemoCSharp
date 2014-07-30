@@ -7,17 +7,17 @@ using Newtonsoft.Json;
 namespace ActiLifeAPILibrary.Models.Request
 {
 	/// <summary>
-	/// Get data scoring algorithm results for a single AGD file. [API 1.10]
+	/// Returns Wear Time Validation information from a .GT3X file or .AGD file. This is specific for NHANES. A more robust WTV API action will be added in the future. [API 1.7]
 	/// </summary>
-	public class DataScoring : RequestBase
+	public class NHANESWTV :RequestBase
 	{
-		public DataScoring()
+		public NHANESWTV()
 		{
-			Options = new Actions.DataScoring();
+			Options = new Actions.NhanesWtv();
 		}
 
 		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public Actions.DataScoring Options { get; set; }
+		public Actions.NhanesWtv Options { get; set; }
 
 		public override string ToJson()
 		{
