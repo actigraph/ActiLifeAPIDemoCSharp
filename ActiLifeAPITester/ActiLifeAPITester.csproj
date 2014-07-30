@@ -80,6 +80,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SplitContainerEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tests\ApiTests.cs" />
     <Compile Include="Tests\IApiTest.cs" />
     <Compile Include="Program.cs" />

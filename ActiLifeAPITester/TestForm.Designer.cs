@@ -33,19 +33,19 @@
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
 			this.btnPopulateTest = new System.Windows.Forms.Button();
-			this.txtRequest = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.txtResponse = new System.Windows.Forms.TextBox();
-			this.btnSend = new System.Windows.Forms.Button();
 			this.grpConnection = new System.Windows.Forms.GroupBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
 			this.btnConnect = new System.Windows.Forms.Button();
-			this.pnlSendReceive = new System.Windows.Forms.SplitContainer();
+			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
+			this.pnlSendReceive = new SplitContainerEx();
+			this.txtRequest = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.btnSend = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.lblResponseStatus = new System.Windows.Forms.Label();
-			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
+			this.txtResponse = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).BeginInit();
@@ -90,66 +90,6 @@
 			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnPopulateTest.UseVisualStyleBackColor = true;
 			// 
-			// txtRequest
-			// 
-			this.txtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtRequest.Location = new System.Drawing.Point(0, 28);
-			this.txtRequest.MaxLength = 0;
-			this.txtRequest.Multiline = true;
-			this.txtRequest.Name = "txtRequest";
-			this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtRequest.Size = new System.Drawing.Size(840, 109);
-			this.txtRequest.TabIndex = 2;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Name = "label1";
-			this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 10);
-			this.label1.Size = new System.Drawing.Size(112, 28);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Request (to ActiLife):";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.label2.Location = new System.Drawing.Point(0, 0);
-			this.label2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-			this.label2.Name = "label2";
-			this.label2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 10);
-			this.label2.Size = new System.Drawing.Size(133, 38);
-			this.label2.TabIndex = 4;
-			this.label2.Text = "Response (from ActiLife):";
-			// 
-			// txtResponse
-			// 
-			this.txtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.txtResponse.Location = new System.Drawing.Point(0, 38);
-			this.txtResponse.MaxLength = 0;
-			this.txtResponse.Multiline = true;
-			this.txtResponse.Name = "txtResponse";
-			this.txtResponse.ReadOnly = true;
-			this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtResponse.Size = new System.Drawing.Size(840, 150);
-			this.txtResponse.TabIndex = 5;
-			// 
-			// btnSend
-			// 
-			this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.btnSend.Enabled = false;
-			this.btnSend.Image = global::ActiLifeAPITester.Properties.Resources.send_receive_all_folders;
-			this.btnSend.Location = new System.Drawing.Point(267, 4);
-			this.btnSend.Name = "btnSend";
-			this.btnSend.Size = new System.Drawing.Size(307, 25);
-			this.btnSend.TabIndex = 6;
-			this.btnSend.Text = "Send Request";
-			this.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnSend.UseVisualStyleBackColor = true;
-			// 
 			// grpConnection
 			// 
 			this.grpConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -186,6 +126,11 @@
 			this.btnConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnConnect.UseVisualStyleBackColor = true;
 			// 
+			// tmrConnected
+			// 
+			this.tmrConnected.Enabled = true;
+			this.tmrConnected.Interval = 500;
+			// 
 			// pnlSendReceive
 			// 
 			this.pnlSendReceive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -209,7 +154,19 @@
 			this.pnlSendReceive.Panel2.Controls.Add(this.label2);
 			this.pnlSendReceive.Size = new System.Drawing.Size(840, 362);
 			this.pnlSendReceive.SplitterDistance = 170;
+			this.pnlSendReceive.SplitterWidth = 10;
 			this.pnlSendReceive.TabIndex = 8;
+			// 
+			// txtRequest
+			// 
+			this.txtRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtRequest.Location = new System.Drawing.Point(0, 28);
+			this.txtRequest.MaxLength = 0;
+			this.txtRequest.Multiline = true;
+			this.txtRequest.Name = "txtRequest";
+			this.txtRequest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtRequest.Size = new System.Drawing.Size(840, 109);
+			this.txtRequest.TabIndex = 2;
 			// 
 			// panel1
 			// 
@@ -219,6 +176,31 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(840, 33);
 			this.panel1.TabIndex = 7;
+			// 
+			// btnSend
+			// 
+			this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnSend.Enabled = false;
+			this.btnSend.Image = global::ActiLifeAPITester.Properties.Resources.send_receive_all_folders;
+			this.btnSend.Location = new System.Drawing.Point(267, 4);
+			this.btnSend.Name = "btnSend";
+			this.btnSend.Size = new System.Drawing.Size(307, 25);
+			this.btnSend.TabIndex = 6;
+			this.btnSend.Text = "Send Request";
+			this.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnSend.UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.label1.Location = new System.Drawing.Point(0, 0);
+			this.label1.Name = "label1";
+			this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 10);
+			this.label1.Size = new System.Drawing.Size(112, 28);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Request (to ActiLife):";
 			// 
 			// flowLayoutPanel1
 			// 
@@ -241,10 +223,29 @@
 			this.lblResponseStatus.Size = new System.Drawing.Size(0, 38);
 			this.lblResponseStatus.TabIndex = 6;
 			// 
-			// tmrConnected
+			// txtResponse
 			// 
-			this.tmrConnected.Enabled = true;
-			this.tmrConnected.Interval = 500;
+			this.txtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtResponse.Location = new System.Drawing.Point(0, 38);
+			this.txtResponse.MaxLength = 0;
+			this.txtResponse.Multiline = true;
+			this.txtResponse.Name = "txtResponse";
+			this.txtResponse.ReadOnly = true;
+			this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtResponse.Size = new System.Drawing.Size(840, 144);
+			this.txtResponse.TabIndex = 5;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.label2.Location = new System.Drawing.Point(0, 0);
+			this.label2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+			this.label2.Name = "label2";
+			this.label2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 10);
+			this.label2.Size = new System.Drawing.Size(133, 38);
+			this.label2.TabIndex = 4;
+			this.label2.Text = "Response (from ActiLife):";
 			// 
 			// TestForm
 			// 
@@ -287,7 +288,7 @@
 		private System.Windows.Forms.TextBox txtResponse;
 		private System.Windows.Forms.Button btnSend;
 		private System.Windows.Forms.GroupBox grpConnection;
-		private System.Windows.Forms.SplitContainer pnlSendReceive;
+		private SplitContainerEx pnlSendReceive;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblConnectionStatus;
 		private System.Windows.Forms.Button btnConnect;
