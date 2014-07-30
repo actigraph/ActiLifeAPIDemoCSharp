@@ -6,22 +6,25 @@ using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Request
 {
+	/// <summary>
+	/// RequestBase that sets the "Action" to the classes name, has a ToJson() implementation and handles Args.
+	/// </summary>
 	public class RequestBase
 	{
 		/// <summary>
-		/// Action of the request (the endpoint).
+		/// Action of the request (the endpoint).  Populated by default to the type's Name.  Such as 'public class DataScoring' would be Action of 'DataScoring'.
 		/// </summary>
 		[JsonProperty(Required = Required.Always)]
-		public virtual string Action { get; set; }
+		public virtual string Action { get { return this.GetType().Name; } }
 
 		/// <summary>
-		/// Arguments of the request.  This is how to control parameters of the Action.
+		/// Arguments of the request.  This is how to control parameters of the Action.  Can be null for no arguments.
 		/// </summary>
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
 		public virtual dynamic Args { get; set; }
 
 		/// <summary>
-		/// Obtains JSON for the given request.
+		/// Obtains JSON for the given request.  Dates formatted in ISO/UTC.  Formatting is Indented.
 		/// </summary>
 		/// <returns></returns>
 		public virtual string ToJson()
