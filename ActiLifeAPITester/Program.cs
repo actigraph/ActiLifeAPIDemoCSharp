@@ -46,9 +46,6 @@ namespace ActiLifeAPITester
 					Application.Run(t);
 				}
 			}
-
-			Console.WriteLine("Press any key to continue....");
-			Console.ReadKey();
 		}
 
 		#region Unhandled Exception Catching
