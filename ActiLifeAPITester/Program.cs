@@ -10,6 +10,7 @@ namespace ActiLifeAPITester
 {
 	internal class Program
 	{
+        [STAThread]
 		private static void Main(string[] args)
 		{
 			Trace.Listeners.Add(new ConsoleTraceListener(false));
