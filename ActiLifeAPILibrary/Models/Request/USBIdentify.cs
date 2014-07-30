@@ -7,16 +7,16 @@ using Newtonsoft.Json;
 namespace ActiLifeAPILibrary.Models.Request
 {
 	/// <summary>
-	/// Get data scoring algorithm results for a single AGD file. [API 1.10]
+	/// Identifies a device by flashing the LEDs. [API 1.5]
 	/// </summary>
-	public class DataScoring : RequestBase
+	public class USBIdentify : RequestBase
 	{
-		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public Actions.DataScoring Options { get; set; }
+		[JsonIgnore]  //will be applied to Args in the base.
+		public string Serial { get; set; }
 
 		public override string ToJson()
 		{
-			Args = Options;
+			Args = new { Serial = Serial };
 
 			return base.ToJson();
 		}

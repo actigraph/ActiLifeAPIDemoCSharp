@@ -69,16 +69,19 @@
     <Compile Include="Converters.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\Actions\ActionBase.cs" />
+    <Compile Include="Models\Actions\BioData.cs" />
     <Compile Include="Models\Actions\ConvertFile.cs" />
     <Compile Include="Models\Actions\CSVOptions.cs" />
     <Compile Include="Models\Actions\CutPointOptions.cs" />
     <Compile Include="Models\Actions\DataScoring.cs" />
     <Compile Include="Models\Actions\EnergyExpenditureOptions.cs" />
     <Compile Include="Models\Actions\FilterOptions.cs" />
+    <Compile Include="Models\Actions\InitOptions.cs" />
     <Compile Include="Models\Actions\METOptions.cs" />
     <Compile Include="Models\Actions\NhanesWtv.cs" />
     <Compile Include="Models\Actions\DataScoringResultOptions.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\Actions\USBList.cs" />
     <Compile Include="Models\Request\ActiLifeMinimize.cs" />
     <Compile Include="Models\Request\ActiLifeQuit.cs" />
     <Compile Include="Models\Request\ActiLifeRestore.cs" />
@@ -88,6 +91,9 @@
     <Compile Include="Models\Request\DataScoring.cs" />
     <Compile Include="Models\Request\NHANESWTV.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />
+    <Compile Include="Models\Request\USBIdentify.cs" />
+    <Compile Include="Models\Request\USBInitialize.cs" />
+    <Compile Include="Models\Request\USBList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,12 +7,17 @@ using Newtonsoft.Json;
 namespace ActiLifeAPILibrary.Models.Request
 {
 	/// <summary>
-	/// Get data scoring algorithm results for a single AGD file. [API 1.10]
+	/// Lists all connected USB devices and continues listing devices as they are plugged in. [API 1.1]
 	/// </summary>
-	public class DataScoring : RequestBase
+	public class USBList : RequestBase
 	{
+		public USBList()
+		{
+			Options = new Actions.USBList();
+		}
+
 		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public Actions.DataScoring Options { get; set; }
+		public Actions.USBList Options { get; set; }
 
 		public override string ToJson()
 		{

@@ -97,5 +97,44 @@ namespace ActiLifeAPILibrary
 
 	        return await SendData(options.ToJson());
         }
+
+		/// <summary>
+		/// Lists all connected USB devices and continues listing devices as they are plugged in. [API 1.1]
+		/// </summary>
+		/// <param name="options">USBList options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/usblist.md"/>
+		public async Task<string> USBList(Models.Request.USBList options)
+		{
+			if (options == null) throw new NullReferenceException("Must set USBList options!");
+
+			return await SendData(options.ToJson());
+		}
+
+		/// <summary>
+		/// <para>Initializes a device connected via USB to prepare for a new activity monitoring session. [API 1.2]</para>
+		/// <para> </para>
+		/// <para>Notes: Will remove all activity data from the device.</para>
+		/// </summary>
+		/// <param name="options">USBInitialize options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/usbinitialize.md"/>
+		public async Task<string> USBInitialize(Models.Request.USBInitialize options)
+		{
+			if (options == null) throw new NullReferenceException("Must set USBInitialize options!");
+
+			return await SendData(options.ToJson());
+		}
+
+		/// <summary> Identifies a device by flashing the LEDs. [API 1.5] </summary>
+		/// <param name="options">USBInitialize options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/usbidentify.md"/>
+		public async Task<string> USBIdentify(Models.Request.USBIdentify options)
+		{
+			if (options == null) throw new NullReferenceException("Must set USBIdentify options!");
+
+			return await SendData(options.ToJson());
+		}
 	}
 }
