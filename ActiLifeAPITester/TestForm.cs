@@ -139,7 +139,7 @@ namespace ActiLifeAPITester
 		#endregion "Unit Tests"
 
 		/// <summary>
-		/// Allows the TextBox to handle CTRL+Backspace (delete word) and CTRL+Enter (send command)
+		/// Allows the TextBox to handle CTRL+Backspace (delete word), CTRL+Enter (send command), CTRL-A (select all text)
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -187,6 +187,11 @@ namespace ActiLifeAPITester
 					e.SuppressKeyPress = true;
 					btnSend.PerformClick();
 					break;
+                case (Keys.Control | Keys.A):
+			        e.SuppressKeyPress = true;
+                    TextBox txtBox = (TextBox)sender;
+                    txtBox.SelectAll();
+			        break;
 			}
 		}
 	}
