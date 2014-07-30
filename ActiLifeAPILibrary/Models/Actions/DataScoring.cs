@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Actions
 {
-    public class DataScoring
+    public class DataScoring : ActionBase
     {
         /// <summary>
         /// The source file to convert.

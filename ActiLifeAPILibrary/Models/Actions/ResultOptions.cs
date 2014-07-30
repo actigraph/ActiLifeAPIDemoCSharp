@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace ActiLifeAPILibrary.Models.Actions
 {
     /// <summary> Options for what data scoring will return. </summary>
-    public class ResultOptions
+	public class ResultOptions : ActionBase
     {
         /// <summary> If enabled, total results will be calculated for each algorithm. </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
@@ -20,12 +20,5 @@ namespace ActiLifeAPILibrary.Models.Actions
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
         [DefaultValue(false)]
         public bool IncludeHourlyResults { get; set; }
-
-        public ResultOptions()
-        {
-            IncludeTotalResults = true;
-            IncludeDailyResults = false;
-            IncludeHourlyResults = false;
-        }
     }
 }

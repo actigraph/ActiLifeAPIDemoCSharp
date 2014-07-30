@@ -8,7 +8,7 @@ namespace ActiLifeAPILibrary.Models.Actions
     /// This is specific for NHANES. 
     /// A more robust WTV API action will be added in the future.
     /// </summary>
-    public class NhanesWtv
+	public class NhanesWtv : ActionBase
     {
         /// <summary>
         /// The file to process. Supports both AGD and GT3X files.
@@ -40,9 +40,6 @@ namespace ActiLifeAPILibrary.Models.Actions
         public NhanesWtv(string filename)
         {
             Filename = filename;
-            MinLength = 60;
-            MinCounts = 10;
-            DropTime = 2;
         }
 
         public NhanesWtv(string filename, int minLength, int minCounts, int dropTime)
