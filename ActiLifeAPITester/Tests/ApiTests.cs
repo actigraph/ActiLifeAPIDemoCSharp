@@ -141,7 +141,7 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
-			public class APIVersionTest : TestBase
+			public class ActiLifeAPIVersionTest : TestBase
 			{
 				public override string GetJSON()
 				{

@@ -172,6 +172,7 @@ namespace ActiLifeAPITester
 			foreach (var tests in (from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
 								   where t.GetInterfaces().Contains(typeof(Tests.IApiTest))
 										&& t.GetConstructor(Type.EmptyTypes) != null && t.IsClass && !t.IsAbstract
+                                   orderby Activator.CreateInstance(t).ToString()
 								   select Activator.CreateInstance(t) as Tests.IApiTest))
 				comboBox1.Items.Add(tests);
 

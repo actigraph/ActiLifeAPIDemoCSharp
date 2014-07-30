@@ -15,7 +15,7 @@ namespace ActiLifeAPILibrary
 			return await SendData(new Models.Request.ActiLifeVersion().ToJson());
 		}
 
-		async public Task<string> APIVersion()
+		async public Task<string> ActiLifeAPIVersion()
 		{
 			return await SendData(new Models.Request.APIVersion().ToJson());
 		}
