@@ -69,6 +69,7 @@
     <Compile Include="Converters.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\Actions\ActionBase.cs" />
+    <Compile Include="Models\Actions\AGDOptions.cs" />
     <Compile Include="Models\Actions\BioData.cs" />
     <Compile Include="Models\Actions\ConvertFile.cs" />
     <Compile Include="Models\Actions\CSVOptions.cs" />
@@ -81,6 +82,9 @@
     <Compile Include="Models\Actions\NhanesWtv.cs" />
     <Compile Include="Models\Actions\DataScoringResultOptions.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\Actions\USBDownload.cs" />
+    <Compile Include="Models\Actions\USBIdentify.cs" />
+    <Compile Include="Models\Actions\USBInitialize.cs" />
     <Compile Include="Models\Actions\USBList.cs" />
     <Compile Include="Models\Actions\WirelessBurst.cs" />
     <Compile Include="Models\Actions\WirelessIdentify.cs" />
@@ -96,6 +100,7 @@
     <Compile Include="Models\Request\DataScoring.cs" />
     <Compile Include="Models\Request\NHANESWTV.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />
+    <Compile Include="Models\Request\USBDownload.cs" />
     <Compile Include="Models\Request\USBIdentify.cs" />
     <Compile Include="Models\Request\USBInitialize.cs" />
     <Compile Include="Models\Request\USBList.cs" />

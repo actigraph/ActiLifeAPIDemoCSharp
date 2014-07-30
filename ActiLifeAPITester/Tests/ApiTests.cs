@@ -255,9 +255,12 @@ namespace ActiLifeAPITester.Tests
 				{
 					return new ActiLifeAPILibrary.Models.Request.USBInitialize
 					{
-						Serial = "MOS123456789",
-						BioData = new ActiLifeAPILibrary.Models.Actions.BioData { SubjectName = "Subject123" },
-						InitOptions = new ActiLifeAPILibrary.Models.Actions.InitOptions { SubjectName = "Subject123" }
+						Options = new ActiLifeAPILibrary.Models.Actions.USBInitialize
+						{
+							Serial = "MOS123456789",
+							BioData = new ActiLifeAPILibrary.Models.Actions.BioData { SubjectName = "Subject123" },
+							InitOptions = new ActiLifeAPILibrary.Models.Actions.InitOptions { SubjectName = "Subject123" }
+						}
 					}.ToJson();
 				}
 			}
@@ -268,98 +271,122 @@ namespace ActiLifeAPITester.Tests
 				{
 					return new ActiLifeAPILibrary.Models.Request.USBIdentify
 					{
-						Serial = "MOS123456789"
+						Options = new ActiLifeAPILibrary.Models.Actions.USBIdentify
+						{
+							Serial = "MOS123456789"
+						}
 					}.ToJson();
 				}
 			}
-			
-            public class WirelessBurst : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessBurst
-                    {
-                        Options = new ActiLifeAPILibrary.Models.Actions.WirelessBurst
-                        {
-                            AntID = "123",
-                            Minutes = 15,
-                            FileUseMetricUnits = false,
-                            FileFormat = "agd",
-                            FileOutPutPath = @"C:\BurstFolder\test.bin",
-                            AntPIN = "1234",
-                            TimeoutSeconds = 60
-                        }
-                    }.ToJson();
-                }
-            }
 
-            public class WirelessIdentify : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessIdentify
-                    {
-                        Options = new ActiLifeAPILibrary.Models.Actions.WirelessIdentify
-                        {
-                            AntID = "123",
-                            AntPIN = "1234",
-                            TimeoutSeconds = 30
-                        }
-                    }.ToJson();
-                }
-            }
+			public class USBDownload : TestBase
+			{
+				public override string GetJSON()
+				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-            public class WirelessRealtimeStart : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessRealtimeStart
-                    {
-                        Options = new ActiLifeAPILibrary.Models.Actions.WirelessRealtimeStart
-                        {
-                            AntID = "123",
-                            AntPIN = "1234",
-                            TimeoutSeconds = 30
-                        }
-                    }.ToJson();
-                }
-            }
+					return new ActiLifeAPILibrary.Models.Request.USBDownload
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.USBDownload
+						{
+							Serial = "MOS123456789",
+							FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
+							AGDOptions = new ActiLifeAPILibrary.Models.Actions.AGDOptions
+							{
+								Axis = 3
+							}
+						}
+					}.ToJson();
+				}
+			}
 
-            public class WirelessRealtimeStop : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessRealtimeStop
-                    {
-                        Options = new ActiLifeAPILibrary.Models.Actions.WirelessRealtimeStop
-                        {
-                            AntID = "123"
-                        }
-                    }.ToJson();
-                }
-            }
+			public class WirelessBurst : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessBurst
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WirelessBurst
+						{
+							AntID = "123",
+							Minutes = 15,
+							FileUseMetricUnits = false,
+							FileFormat = "agd",
+							FileOutPutPath = @"C:\BurstFolder\test.bin",
+							AntPIN = "1234",
+							TimeoutSeconds = 60
+						}
+					}.ToJson();
+				}
+			}
 
-            public class WirelessStart : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessStart
-                    {
-                        Options = new ActiLifeAPILibrary.Models.Actions.WirelessStart
-                        {
-                            AntPIN = "1234"
-                        }
-                    }.ToJson();
-                }
-            }
+			public class WirelessIdentify : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessIdentify
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WirelessIdentify
+						{
+							AntID = "123",
+							AntPIN = "1234",
+							TimeoutSeconds = 30
+						}
+					}.ToJson();
+				}
+			}
 
-            public class WirelessStop : TestBase
-            {
-                public override string GetJSON()
-                {
-                    return new ActiLifeAPILibrary.Models.Request.WirelessStop().ToJson();
-                }
-            }
+			public class WirelessRealtimeStart : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessRealtimeStart
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WirelessRealtimeStart
+						{
+							AntID = "123",
+							AntPIN = "1234",
+							TimeoutSeconds = 30
+						}
+					}.ToJson();
+				}
+			}
+
+			public class WirelessRealtimeStop : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessRealtimeStop
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WirelessRealtimeStop
+						{
+							AntID = "123"
+						}
+					}.ToJson();
+				}
+			}
+
+			public class WirelessStart : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessStart
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WirelessStart
+						{
+							AntPIN = "1234"
+						}
+					}.ToJson();
+				}
+			}
+
+			public class WirelessStop : TestBase
+			{
+				public override string GetJSON()
+				{
+					return new ActiLifeAPILibrary.Models.Request.WirelessStop().ToJson();
+				}
+			}
 		}
 	}
 }

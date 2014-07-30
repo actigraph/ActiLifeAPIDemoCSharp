@@ -136,6 +136,20 @@ namespace ActiLifeAPILibrary
 
 			return await SendData(options.ToJson());
 		}
+
+		/// <summary><para>Downloads data from a device connected via USB.</para<
+		/// <para>Notes:</para>
+		/// <para>- If the device does not have activity data the response will be a failure.</para>
+		/// <para>- Does NOT delete data from the device.</para></summary>
+		/// <param name="options">USBInitialize options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/usbdownload.md"/>
+		public async Task<string> USBDownload(Models.Request.USBDownload options)
+		{
+			if (options == null) throw new NullReferenceException("Must set USBDownload options!");
+
+			return await SendData(options.ToJson());
+		}
 		
         /// <summary>
         /// Downloads requested number of minutes of data from an ANT device. [API 1.0]

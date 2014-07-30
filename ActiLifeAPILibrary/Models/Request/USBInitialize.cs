@@ -13,32 +13,12 @@ namespace ActiLifeAPILibrary.Models.Request
 	/// </summary>
 	public class USBInitialize : RequestBase
 	{
-		/// <summary>
-		/// The device serial number to target.
-		/// </summary>
 		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public string Serial { get; set; }
-
-		/// <summary>
-		/// Bio information is a nested JSON object. The values will be injected into the file as metadata.
-		/// </summary>
-		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public Actions.BioData BioData { get; set; }
-
-		/// <summary>
-		/// Initialization options are a nested JSON object. These values control what is enabled on the device after initialization.
-		/// </summary>
-		[JsonIgnoreAttribute] //will be applied to Args in the base.
-		public Actions.InitOptions InitOptions { get; set; }
+		public Actions.USBInitialize Options { get; set; }
 
 		public override string ToJson()
 		{
-			Args = new
-			{
-				Serial = Serial,
-				BioData = BioData,
-				InitOptions = InitOptions
-			};
+			Args = Options;
 
 			return base.ToJson();
 		}
