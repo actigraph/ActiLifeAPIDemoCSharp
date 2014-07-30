@@ -97,5 +97,81 @@ namespace ActiLifeAPILibrary
 
 	        return await SendData(options.ToJson());
         }
+
+        /// <summary>
+        /// Downloads requested number of minutes of data from an ANT device. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessBurst options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessburst.md"/>
+        public async Task<string> WirelessBurst(Models.Request.WirelessBurst options)
+        {
+            if (options == null) throw new NullReferenceException("Must set WirelessBurst options!");
+
+            return await SendData(options.ToJson());
+        }
+
+        /// <summary>
+        /// Identifies an ANT device by flashing the LEDs. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessIdentify options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessidentify.md"/>
+        public async Task<string> WirelessIdentify(Models.Request.WirelessIdentify options)
+        {
+            if (options == null) throw new NullReferenceException("Must set WirelessIdentify options!");
+
+            return await SendData(options.ToJson());
+        }
+
+        /// <summary>
+        /// Start receiving data real time from an ANT device. Wireless scanning must have been started previously. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessRealtimeStart options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestart.md"/>
+        public async Task<string> WirelessRealtimeStart(Models.Request.WirelessRealtimeStart options)
+        {
+            if (options == null) throw new NullReferenceException("Must set WirelessRealtimeStart options!");
+
+            return await SendData(options.ToJson());
+        }
+
+        /// <summary>
+        /// Stop receiving data real time from an ANT device. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessRealtimeStop options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestop.md"/>
+        public async Task<string> WirelessRealtimeStop(Models.Request.WirelessRealtimeStop options)
+        {
+            if (options == null) throw new NullReferenceException("Must set WirelessRealtimeStop options!");
+
+            return await SendData(options.ToJson());
+        }
+
+        /// <summary>
+        /// Start receiving data real time from an ANT device. Wireless scanning must have been started previously. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessRealtimeStart options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestart.md"/>
+        public async Task<string> WirelessStart(Models.Request.WirelessStart options)
+        {
+            if (options == null) throw new NullReferenceException("Must set WirelessStart options!");
+
+            return await SendData(options.ToJson());
+        }
+
+        /// <summary>
+        /// Stop receiving data real time from an ANT device. [API 1.0]
+        /// </summary>
+        /// <param name="options">WirelessRealtimeStop options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestop.md"/>
+        public async Task<string> WirelessStop()
+        {
+            return await SendData(new Models.Request.WirelessStop().ToJson());
+        }
 	}
 }
