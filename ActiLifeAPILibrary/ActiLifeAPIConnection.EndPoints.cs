@@ -194,7 +194,7 @@ namespace ActiLifeAPILibrary
         /// </summary>
         /// <param name="options">WirelessRealtimeStart options required for this Action.</param>
         /// <returns>Task that will return the JSON result from ActiLife.</returns>
-        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestart.md"/>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessstart.md"/>
         public async Task<string> WirelessStart(Models.Request.WirelessStart options)
         {
             if (options == null) throw new NullReferenceException("Must set WirelessStart options!");
@@ -207,7 +207,7 @@ namespace ActiLifeAPILibrary
         /// </summary>
         /// <param name="options">WirelessRealtimeStop options required for this Action.</param>
         /// <returns>Task that will return the JSON result from ActiLife.</returns>
-        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessrealtimestop.md"/>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/wirelessstop.md"/>
         public async Task<string> WirelessStop()
         {
             return await SendData(new Models.Request.WirelessStop().ToJson());
