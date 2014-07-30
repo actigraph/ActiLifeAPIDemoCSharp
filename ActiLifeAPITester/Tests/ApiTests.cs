@@ -360,6 +360,21 @@ namespace ActiLifeAPITester.Tests
                     return new ActiLifeAPILibrary.Models.Request.WirelessStop().ToJson();
                 }
             }
+
+            public class WirelessInitialize : TestBase
+            {
+                public override string GetJSON()
+                {
+                    return new ActiLifeAPILibrary.Models.Request.WirelessInitialize
+                    {
+                        AntID = "123",
+                        AntPIN = "1234",
+                        TimeoutSeconds = 30,
+                        BioData = new ActiLifeAPILibrary.Models.Actions.BioData { SubjectName = "Subject123" },
+                        InitOptions = new ActiLifeAPILibrary.Models.Actions.InitOptions { SubjectName = "Subject123" }
+                    }.ToJson();
+                }
+            }
 		}
 	}
 }
