@@ -1,6 +1,6 @@
 This repository contains C# implementations of the ActiLife API.
 
-* [ActiLife](http://actigraphcorp.com/actilife) 6.9 or greater is required to utilize the API Tester and Library.
+* [ActiLife](http://actigraphcorp.com/actilife) 6.7 or greater is required to utilize the API Tester and Library.
 * The API feature toggle must be licensed through ActiGraph.
 
 ActiLife API Documentation

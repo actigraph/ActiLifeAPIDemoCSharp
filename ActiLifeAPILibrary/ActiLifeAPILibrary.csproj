@@ -82,6 +82,11 @@
     <Compile Include="Models\Actions\DataScoringResultOptions.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Models\Actions\USBList.cs" />
+    <Compile Include="Models\Actions\WirelessBurst.cs" />
+    <Compile Include="Models\Actions\WirelessIdentify.cs" />
+    <Compile Include="Models\Actions\WirelessRealtimeStart.cs" />
+    <Compile Include="Models\Actions\WirelessRealtimeStop.cs" />
+    <Compile Include="Models\Actions\WirelessStart.cs" />
     <Compile Include="Models\Request\ActiLifeMinimize.cs" />
     <Compile Include="Models\Request\ActiLifeQuit.cs" />
     <Compile Include="Models\Request\ActiLifeRestore.cs" />
@@ -94,6 +99,12 @@
     <Compile Include="Models\Request\USBIdentify.cs" />
     <Compile Include="Models\Request\USBInitialize.cs" />
     <Compile Include="Models\Request\USBList.cs" />
+    <Compile Include="Models\Request\WirelessBurst.cs" />
+    <Compile Include="Models\Request\WirelessIdentify.cs" />
+    <Compile Include="Models\Request\WirelessRealtimeStart.cs" />
+    <Compile Include="Models\Request\WirelessRealtimeStop.cs" />
+    <Compile Include="Models\Request\WirelessStart.cs" />
+    <Compile Include="Models\Request\WirelessStop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
