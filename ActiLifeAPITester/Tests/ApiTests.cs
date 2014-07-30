@@ -9,28 +9,6 @@ namespace ActiLifeAPITester.Tests
 {
 	internal class ApiTests
 	{
-
-		//public class TestWaitForConsolePrompt : IApiTest
-		//{
-		//	#region IApiTest Members
-
-		//	public string Name
-		//	{
-		//		get { return "Waiting To Send Next Command..."; }
-		//	}
-
-		//	public dynamic GetJSON() {
-		//		Console.WriteLine("Press any key to continue...");
-		//		Console.ReadKey();
-
-		//		return null;
-		//	}
-
-		//	public bool IsValidResponse(JObject d) { return true; }
-
-		//	#endregion
-		//}
-
 		public abstract class TestBase : IApiTest
 		{
 			public TestBase()
