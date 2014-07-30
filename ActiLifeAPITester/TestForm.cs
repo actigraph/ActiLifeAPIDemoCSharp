@@ -83,6 +83,7 @@ namespace ActiLifeAPITester
 				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
+			clearLogToolStripMenuItem.Click += (o, e) => { txtResponse.Clear(); };
 
 			this.HandleCreated += (o, e) => { FillAPITests(); btnConnect.Focus(); };
 			btnPopulateTest.Click += (o, e) => PopulateAPITestSelected();

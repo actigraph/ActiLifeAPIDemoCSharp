@@ -46,6 +46,8 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.lblResponseStatus = new System.Windows.Forms.Label();
 			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
+			this.menuResponseArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).BeginInit();
@@ -54,6 +56,7 @@
 			this.pnlSendReceive.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
+			this.menuResponseArea.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// comboBox1
@@ -126,6 +129,7 @@
 			// 
 			// txtResponse
 			// 
+			this.txtResponse.ContextMenuStrip = this.menuResponseArea;
 			this.txtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtResponse.Location = new System.Drawing.Point(0, 38);
 			this.txtResponse.MaxLength = 0;
@@ -245,6 +249,19 @@
 			this.tmrConnected.Enabled = true;
 			this.tmrConnected.Interval = 500;
 			// 
+			// menuResponseArea
+			// 
+			this.menuResponseArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearLogToolStripMenuItem});
+			this.menuResponseArea.Name = "menuResponseArea";
+			this.menuResponseArea.Size = new System.Drawing.Size(153, 48);
+			// 
+			// clearLogToolStripMenuItem
+			// 
+			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clearLogToolStripMenuItem.Text = "Clear Log";
+			// 
 			// TestForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +288,7 @@
 			this.panel1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
+			this.menuResponseArea.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -293,5 +311,7 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Label lblResponseStatus;
 		private System.Windows.Forms.Timer tmrConnected;
+		private System.Windows.Forms.ContextMenuStrip menuResponseArea;
+		private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
 	}
 }
