@@ -83,6 +83,16 @@ namespace ActiLifeAPITester.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cross {
+            get {
+                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap send_receive_all_folders {
             get {
                 object obj = ResourceManager.GetObject("send_receive_all_folders", resourceCulture);
@@ -96,6 +106,16 @@ namespace ActiLifeAPITester.Properties {
         internal static System.Drawing.Bitmap table_save {
             get {
                 object obj = ResourceManager.GetObject("table_save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_circle_frame {
+            get {
+                object obj = ResourceManager.GetObject("tick_circle_frame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

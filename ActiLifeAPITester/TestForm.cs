@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ActiLifeAPILibrary;
 
 namespace ActiLifeAPITester
 {
@@ -92,14 +93,16 @@ namespace ActiLifeAPITester
 			    try
 			    {
                     JObject j = JsonConvert.DeserializeObject<JObject>(response);
-                    JToken jtoken;
-                    if (j.TryGetValue("Success", StringComparison.CurrentCultureIgnoreCase, out jtoken))
-                    {
-                        bool successful = false;
-                        try { successful = (bool)jtoken; }
-                        catch { }
-                        lblResponseStatus.Text = successful ? "Successfully Sent" : "Unuccessfully Sent";
-                    }
+
+					bool success = j.GetValueFromJToken<bool>("Success", false);
+
+					
+					imgStatus.Image = success ? Properties.Resources.tick_circle_frame : Properties.Resources.cross;
+
+					if (success)
+						lblResponseStatus.Text = "Successfully Sent";
+					else
+						lblResponseStatus.Text = "Error: \"" +  j.GetValueFromJToken<string>("Error", "") + "\"";
 			    }
 			    catch (Exception ex)
 			    {

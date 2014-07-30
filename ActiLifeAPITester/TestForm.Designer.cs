@@ -32,11 +32,15 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
-			this.btnPopulateTest = new System.Windows.Forms.Button();
 			this.grpConnection = new System.Windows.Forms.GroupBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
-			this.btnConnect = new System.Windows.Forms.Button();
 			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
+			this.menuContextResponse = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.btnConnect = new System.Windows.Forms.Button();
+			this.btnPopulateTest = new System.Windows.Forms.Button();
+			this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnlSendReceive = new SplitContainerEx();
 			this.txtRequest = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -44,21 +48,19 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.lblResponseStatus = new System.Windows.Forms.Label();
+			this.imgStatus = new System.Windows.Forms.PictureBox();
 			this.txtResponse = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.menuContextResponse = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.saveLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
+			this.menuContextResponse.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).BeginInit();
 			this.pnlSendReceive.Panel1.SuspendLayout();
 			this.pnlSendReceive.Panel2.SuspendLayout();
 			this.pnlSendReceive.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
-			this.menuContextResponse.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.imgStatus)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// comboBox1
@@ -83,18 +85,6 @@
 			this.grpTests.TabStop = false;
 			this.grpTests.Text = "Built In Tests";
 			// 
-			// btnPopulateTest
-			// 
-			this.btnPopulateTest.AutoSize = true;
-			this.btnPopulateTest.Image = global::ActiLifeAPITester.Properties.Resources.wand;
-			this.btnPopulateTest.Location = new System.Drawing.Point(273, 17);
-			this.btnPopulateTest.Name = "btnPopulateTest";
-			this.btnPopulateTest.Size = new System.Drawing.Size(79, 23);
-			this.btnPopulateTest.TabIndex = 1;
-			this.btnPopulateTest.Text = "Populate";
-			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnPopulateTest.UseVisualStyleBackColor = true;
-			// 
 			// grpConnection
 			// 
 			this.grpConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -118,6 +108,25 @@
 			this.lblConnectionStatus.Size = new System.Drawing.Size(232, 13);
 			this.lblConnectionStatus.TabIndex = 1;
 			// 
+			// tmrConnected
+			// 
+			this.tmrConnected.Enabled = true;
+			this.tmrConnected.Interval = 500;
+			// 
+			// menuContextResponse
+			// 
+			this.menuContextResponse.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearLogToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.saveLogToolStripMenuItem});
+			this.menuContextResponse.Name = "menuContextResponse";
+			this.menuContextResponse.Size = new System.Drawing.Size(125, 54);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+			// 
 			// btnConnect
 			// 
 			this.btnConnect.AutoSize = true;
@@ -131,10 +140,31 @@
 			this.btnConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnConnect.UseVisualStyleBackColor = true;
 			// 
-			// tmrConnected
+			// btnPopulateTest
 			// 
-			this.tmrConnected.Enabled = true;
-			this.tmrConnected.Interval = 500;
+			this.btnPopulateTest.AutoSize = true;
+			this.btnPopulateTest.Image = global::ActiLifeAPITester.Properties.Resources.wand;
+			this.btnPopulateTest.Location = new System.Drawing.Point(273, 17);
+			this.btnPopulateTest.Name = "btnPopulateTest";
+			this.btnPopulateTest.Size = new System.Drawing.Size(79, 23);
+			this.btnPopulateTest.TabIndex = 1;
+			this.btnPopulateTest.Text = "Populate";
+			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnPopulateTest.UseVisualStyleBackColor = true;
+			// 
+			// clearLogToolStripMenuItem
+			// 
+			this.clearLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.cell_clear;
+			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+			this.clearLogToolStripMenuItem.Text = "Clear Log";
+			// 
+			// saveLogToolStripMenuItem
+			// 
+			this.saveLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.table_save;
+			this.saveLogToolStripMenuItem.Name = "saveLogToolStripMenuItem";
+			this.saveLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+			this.saveLogToolStripMenuItem.Text = "Save Log";
 			// 
 			// pnlSendReceive
 			// 
@@ -212,6 +242,7 @@
 			this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.flowLayoutPanel1.Controls.Add(this.lblResponseStatus);
+			this.flowLayoutPanel1.Controls.Add(this.imgStatus);
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(185, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -222,11 +253,24 @@
 			// 
 			this.lblResponseStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblResponseStatus.AutoSize = true;
-			this.lblResponseStatus.Location = new System.Drawing.Point(652, 0);
+			this.lblResponseStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblResponseStatus.Location = new System.Drawing.Point(649, 0);
 			this.lblResponseStatus.Name = "lblResponseStatus";
-			this.lblResponseStatus.Padding = new System.Windows.Forms.Padding(0, 15, 0, 10);
-			this.lblResponseStatus.Size = new System.Drawing.Size(0, 38);
+			this.lblResponseStatus.Padding = new System.Windows.Forms.Padding(3, 15, 0, 10);
+			this.lblResponseStatus.Size = new System.Drawing.Size(3, 38);
 			this.lblResponseStatus.TabIndex = 6;
+			this.lblResponseStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// imgStatus
+			// 
+			this.imgStatus.Location = new System.Drawing.Point(630, 0);
+			this.imgStatus.Margin = new System.Windows.Forms.Padding(3, 0, 0, 10);
+			this.imgStatus.Name = "imgStatus";
+			this.imgStatus.Padding = new System.Windows.Forms.Padding(3, 15, 0, 10);
+			this.imgStatus.Size = new System.Drawing.Size(16, 16);
+			this.imgStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.imgStatus.TabIndex = 7;
+			this.imgStatus.TabStop = false;
 			// 
 			// txtResponse
 			// 
@@ -253,34 +297,6 @@
 			this.label2.TabIndex = 4;
 			this.label2.Text = "Response (from ActiLife):";
 			// 
-			// menuContextResponse
-			// 
-			this.menuContextResponse.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearLogToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.saveLogToolStripMenuItem});
-			this.menuContextResponse.Name = "menuContextResponse";
-			this.menuContextResponse.Size = new System.Drawing.Size(125, 54);
-			// 
-			// clearLogToolStripMenuItem
-			// 
-			this.clearLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.cell_clear;
-			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-			this.clearLogToolStripMenuItem.Text = "Clear Log";
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
-			// 
-			// saveLogToolStripMenuItem
-			// 
-			this.saveLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.table_save;
-			this.saveLogToolStripMenuItem.Name = "saveLogToolStripMenuItem";
-			this.saveLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-			this.saveLogToolStripMenuItem.Text = "Save Log";
-			// 
 			// TestForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,6 +314,7 @@
 			this.grpTests.PerformLayout();
 			this.grpConnection.ResumeLayout(false);
 			this.grpConnection.PerformLayout();
+			this.menuContextResponse.ResumeLayout(false);
 			this.pnlSendReceive.Panel1.ResumeLayout(false);
 			this.pnlSendReceive.Panel1.PerformLayout();
 			this.pnlSendReceive.Panel2.ResumeLayout(false);
@@ -307,7 +324,7 @@
 			this.panel1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
-			this.menuContextResponse.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.imgStatus)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -334,5 +351,6 @@
 		private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem saveLogToolStripMenuItem;
+		private System.Windows.Forms.PictureBox imgStatus;
 	}
 }

@@ -121,6 +121,8 @@
     <Content Include="FodyWeavers.xml" />
     <None Include="Resources\cell_clear.png" />
     <None Include="Resources\table_save.png" />
+    <None Include="Resources\tick_circle_frame.png" />
+    <None Include="Resources\cross.png" />
     <Content Include="traffic_lights.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
