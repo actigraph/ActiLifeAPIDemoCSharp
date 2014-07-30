@@ -51,7 +51,7 @@ namespace ActiLifeAPITester
 				{
 					await _api.Connect();
 				}
-				catch (AggregateException ex) { MessageBox.Show(this, ex.Flatten().ToString(), "Issue Connecting To ActiLife", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+				catch (Exception ex) { MessageBox.Show(this, ex.ToString(), "Issue Connecting To ActiLife", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 			};
 
 			btnSend.Click += async (o, e) =>
@@ -78,7 +78,7 @@ namespace ActiLifeAPITester
 						return;
 					}
 				}
-				catch (AggregateException ex) { MessageBox.Show(this, ex.Flatten().ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+				catch (Exception ex) { MessageBox.Show(this, ex.ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
 				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
