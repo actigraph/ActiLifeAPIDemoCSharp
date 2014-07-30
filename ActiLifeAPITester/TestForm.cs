@@ -113,11 +113,8 @@ namespace ActiLifeAPITester
 
             #region response right click menu
             
-            var contextMenuStrip = new ContextMenuStrip();
-            var clearLogMenu = new ToolStripMenuItem { Text = "&Clear Log" };
-            var saveLogMenu = new ToolStripMenuItem { Text = "&Save Log to File..." };
-            clearLogMenu.Click += (obj, sender) => txtResponse.Clear();
-            saveLogMenu.Click += (obj, sender) =>
+            clearLogToolStripMenuItem.Click += (obj, sender) => txtResponse.Clear();
+            saveLogToolStripMenuItem.Click += (obj, sender) =>
             {
                 using (var saveFileDialog = new SaveFileDialog())
                 {
@@ -133,14 +130,7 @@ namespace ActiLifeAPITester
                     Process.Start(saveFileDialog.FileName);
                 }
             };
-            contextMenuStrip.Items.AddRange(new ToolStripItem[] { clearLogMenu, saveLogMenu });
-            
-            txtResponse.ContextMenuStrip = contextMenuStrip;
-            txtResponse.MouseUp += (o, e) =>
-            {
-                if (e.Button == MouseButtons.Right)
-                    contextMenuStrip.Show(txtResponse, new Point(e.X, e.Y));
-            };
+           
             
             #endregion response right click menu
 

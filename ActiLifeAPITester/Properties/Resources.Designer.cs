@@ -63,6 +63,16 @@ namespace ActiLifeAPITester.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cell_clear {
+            get {
+                object obj = ResourceManager.GetObject("cell_clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap connect {
             get {
                 object obj = ResourceManager.GetObject("connect", resourceCulture);
@@ -76,6 +86,16 @@ namespace ActiLifeAPITester.Properties {
         internal static System.Drawing.Bitmap send_receive_all_folders {
             get {
                 object obj = ResourceManager.GetObject("send_receive_all_folders", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap table_save {
+            get {
+                object obj = ResourceManager.GetObject("table_save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

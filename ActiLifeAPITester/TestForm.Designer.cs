@@ -46,6 +46,10 @@
 			this.lblResponseStatus = new System.Windows.Forms.Label();
 			this.txtResponse = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.menuContextResponse = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.saveLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.grpTests.SuspendLayout();
 			this.grpConnection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).BeginInit();
@@ -54,6 +58,7 @@
 			this.pnlSendReceive.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
+			this.menuContextResponse.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// comboBox1
@@ -225,6 +230,7 @@
 			// 
 			// txtResponse
 			// 
+			this.txtResponse.ContextMenuStrip = this.menuContextResponse;
 			this.txtResponse.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtResponse.Location = new System.Drawing.Point(0, 38);
 			this.txtResponse.MaxLength = 0;
@@ -246,6 +252,34 @@
 			this.label2.Size = new System.Drawing.Size(133, 38);
 			this.label2.TabIndex = 4;
 			this.label2.Text = "Response (from ActiLife):";
+			// 
+			// menuContextResponse
+			// 
+			this.menuContextResponse.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearLogToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.saveLogToolStripMenuItem});
+			this.menuContextResponse.Name = "menuContextResponse";
+			this.menuContextResponse.Size = new System.Drawing.Size(125, 54);
+			// 
+			// clearLogToolStripMenuItem
+			// 
+			this.clearLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.cell_clear;
+			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+			this.clearLogToolStripMenuItem.Text = "Clear Log";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+			// 
+			// saveLogToolStripMenuItem
+			// 
+			this.saveLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.table_save;
+			this.saveLogToolStripMenuItem.Name = "saveLogToolStripMenuItem";
+			this.saveLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+			this.saveLogToolStripMenuItem.Text = "Save Log";
 			// 
 			// TestForm
 			// 
@@ -273,6 +307,7 @@
 			this.panel1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.flowLayoutPanel1.PerformLayout();
+			this.menuContextResponse.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -295,5 +330,9 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Label lblResponseStatus;
 		private System.Windows.Forms.Timer tmrConnected;
+		private System.Windows.Forms.ContextMenuStrip menuContextResponse;
+		private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem saveLogToolStripMenuItem;
 	}
 }
