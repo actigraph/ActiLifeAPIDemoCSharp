@@ -81,6 +81,6 @@ namespace ActiLifeAPILibrary.Models.Actions
         /// Options for which results to return.
         /// </summary>
         [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
-        public ResultOptions ResultOptions { get; set; }
+        public DataScoringResultOptions DataScoringResultOptions { get; set; }
     }
 }
