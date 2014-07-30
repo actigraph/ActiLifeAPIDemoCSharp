@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Actions
 {
@@ -19,6 +20,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 										   where prop.CanWrite && prop.GetType().IsClass && prop.PropertyType.GetConstructor(Type.EmptyTypes) != null
 											   select prop))
 			{
+				var jsonAttribute = item.GetCustomAttributes(typeof(JsonPropertyAttribute), true).FirstOrDefault() as JsonPropertyAttribute;
+				if (jsonAttribute != null && jsonAttribute.Required == Required.AllowNull) continue; //don't fill it in, we REALLY don't need it!
+
 				var constructor = item.PropertyType.GetConstructor(Type.EmptyTypes);
 
 				item.SetValue(this, constructor.Invoke(Type.EmptyTypes), null);
