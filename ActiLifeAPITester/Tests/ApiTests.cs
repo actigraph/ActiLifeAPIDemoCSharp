@@ -128,7 +128,7 @@ namespace ActiLifeAPITester.Tests
 
 		public class Tests
 		{
-			public class ActiLifeVersionTest : TestBase
+			public class ActiLifeVersion : TestBase
 			{
 				public override string GetJSON()
 				{
@@ -141,7 +141,7 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
-			public class ActiLifeAPIVersionTest : TestBase
+			public class APIVersion : TestBase
 			{
 				public override string GetJSON()
 				{
@@ -178,9 +178,9 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
-			public class ActiLifeNHANESWtv : TestBase
+			public class NHANESWtv : TestBase
 			{
-				public ActiLifeNHANESWtv() : base() { }
+				public NHANESWtv() : base() { }
 
 				public override string GetJSON()
 				{
@@ -207,10 +207,8 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
-			public class ActiLifeDataScoring : TestBase
+			public class DataScoring : TestBase
 			{
-				public ActiLifeDataScoring() : base() { }
-
 				public override string GetJSON()
 				{
 					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
