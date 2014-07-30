@@ -69,6 +69,8 @@
     <Compile Include="Converters.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\Actions\ActionBase.cs" />
+    <Compile Include="Models\Actions\ConvertFile.cs" />
+    <Compile Include="Models\Actions\CSVOptions.cs" />
     <Compile Include="Models\Actions\CutPointOptions.cs" />
     <Compile Include="Models\Actions\DataScoring.cs" />
     <Compile Include="Models\Actions\EnergyExpenditureOptions.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Models\Request\ActiLifeRestore.cs" />
     <Compile Include="Models\Request\ActiLifeVersion.cs" />
     <Compile Include="Models\Request\APIVersion.cs" />
+    <Compile Include="Models\Request\ConvertFile.cs" />
     <Compile Include="Models\Request\DataScoring.cs" />
     <Compile Include="Models\Request\NHANESWTV.cs" />
     <Compile Include="Models\Request\RequestBase.cs" />

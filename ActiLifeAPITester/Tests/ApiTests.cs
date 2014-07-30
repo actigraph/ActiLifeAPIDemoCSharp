@@ -222,6 +222,24 @@ namespace ActiLifeAPITester.Tests
 					}.ToJson();
 				}
 			}
+
+			public class ConvertFile : TestBase
+			{
+				public override string GetJSON()
+				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+					return new ActiLifeAPILibrary.Models.Request.ConvertFile
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.ConvertFile
+						{
+							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.gt3x"),
+							FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
+							FileOutputFormat = "rawcsv"
+						}
+					}.ToJson();
+				}
+			}
 		}
 	}
 }
