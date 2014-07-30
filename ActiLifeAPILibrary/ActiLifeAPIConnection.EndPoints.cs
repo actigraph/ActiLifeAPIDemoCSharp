@@ -14,6 +14,7 @@ namespace ActiLifeAPILibrary
 		/// Returns the version of ActiLife that is running. [API 1.6]
 		/// </summary>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/actilifeversion.md"/>
 		async public Task<string> ActiLifeVersion()
 		{
 			return await SendData(new Models.Request.ActiLifeVersion().ToJson());
@@ -23,6 +24,7 @@ namespace ActiLifeAPILibrary
 		/// Returns the version of the API operating in the current responding version of ActiLife. [API 1.4]
 		/// </summary>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/apiversion.md"/>
 		async public Task<string> APIVersion()
 		{
 			return await SendData(new Models.Request.APIVersion().ToJson());
@@ -32,6 +34,7 @@ namespace ActiLifeAPILibrary
 		/// Minimizes ActiLife to not be seen by the user. [API 1.0]
 		/// </summary>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/actilifeminimize.md"/>
 		async public Task<string> ActiLifeMinimize()
 		{
 			return await SendData(new Models.Request.ActiLifeMinimize().ToJson());
@@ -41,6 +44,7 @@ namespace ActiLifeAPILibrary
 		/// Restores ActiLife from a minimized state. [API 1.0]
 		/// </summary>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/actiliferestore.md"/>
 		async public Task<string> ActiLifeRestore()
 		{
 			return await SendData(new Models.Request.ActiLifeRestore().ToJson());
@@ -60,6 +64,7 @@ namespace ActiLifeAPILibrary
 		/// </summary>
 		/// <param name="options">ConvertFile options required for this Action.</param>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/convertfile.md"/>
 		async public Task<string> ConvertFile(Models.Request.ConvertFile options)
 		{
 			if (options == null) throw new NullReferenceException("Must set ConvertFile options!");
@@ -72,6 +77,7 @@ namespace ActiLifeAPILibrary
 		/// </summary>
 		/// <param name="options">NHANESWTV options required for this Action.</param>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/nhaneswtv.md"/>
         async public Task<string> NHANESWTV(Models.Request.NHANESWTV options)
         {
 			if (options == null) throw new NullReferenceException("Must set NHANESWTV options!");
@@ -84,6 +90,7 @@ namespace ActiLifeAPILibrary
 		/// </summary>
 		/// <param name="options">DataScoring options required for this Action.</param>
 		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/datascoring.md"/>
 	    public async Task<string> DataScoring(Models.Request.DataScoring options)
         {
 			if (options == null) throw new NullReferenceException("Must set DataScoring options!");
