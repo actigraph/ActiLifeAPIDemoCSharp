@@ -33,4 +33,4 @@ To use, run ActiLife with the API feature toggle enabled. The GUI can then be co
 
 Pre-built releases are found in the [release section of this repository](https://github.com/actigraph/ActiLifeAPIDemoCSharp/releases)
 
-![screenshot 2014-07-29 16 03 00](https://cloud.githubusercontent.com/assets/92913/3741868/c8597c6a-1763-11e4-89dd-bc45542cf25e.png)
+![2014-07-30_17-50-33](https://cloud.githubusercontent.com/assets/92913/3757691/1e56f114-183c-11e4-852f-f11bf0b1071b.png)
