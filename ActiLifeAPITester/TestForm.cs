@@ -20,6 +20,11 @@ namespace ActiLifeAPITester
 		{
 			InitializeComponent();
 
+			System.Version current = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+			//Major.Minor.Build.Revision
+			//Show as many decimals as we need to for the version (ie: 2.0 instead of 2.0.0.0)
+			this.Text += " v" + current.ToString(current.Revision != 0 ? 4 : current.Build != 0 ? 3 : 2);
+
 			txtRequest.KeyDown += HandleSpecial_KeyDown;
 
 			tmrConnected.Tick += (o, e) =>

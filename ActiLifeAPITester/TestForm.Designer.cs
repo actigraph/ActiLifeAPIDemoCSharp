@@ -259,7 +259,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MinimumSize = new System.Drawing.Size(880, 479);
 			this.Name = "TestForm";
-			this.Text = "ActiLife API Test Window";
+			this.Text = "ActiLife API Tester";
 			this.grpTests.ResumeLayout(false);
 			this.grpTests.PerformLayout();
 			this.grpConnection.ResumeLayout(false);
