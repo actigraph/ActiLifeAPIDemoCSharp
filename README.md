@@ -17,9 +17,9 @@ Example usage of Library:
 using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
-    await api.Connect();
+    bool connected = await api.Connect();
     if (api.IsConnected)
-      await api.GetActiLifeVersion();
+      var response = await api.GetActiLifeVersion();
   }
   catch(AggregateException ex) { } //handle Task exception
 }
