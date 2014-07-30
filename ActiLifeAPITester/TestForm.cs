@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ActiLifeAPITester
 {
@@ -82,7 +83,26 @@ namespace ActiLifeAPITester
 				}
 				catch (Exception ex) { MessageBox.Show(this, ex.ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
+                //determine if response was successful
+			    try
+			    {
+                    JObject j = JsonConvert.DeserializeObject<JObject>(response);
+                    JToken jtoken;
+                    if (j.TryGetValue("Success", StringComparison.CurrentCultureIgnoreCase, out jtoken))
+                    {
+                        bool successful = false;
+                        try { successful = (bool)jtoken; }
+                        catch { }
+                        lblResponseStatus.Text = successful ? "Successfully Sent" : "Unuccessfully Sent";
+                    }
+			    }
+			    catch (Exception ex)
+			    {
+                    MessageBox.Show(this, ex.ToString(), "Issue Parsing Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+			    }
+			    
+
+			    txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
 
