@@ -37,6 +37,9 @@ namespace ActiLifeAPITester
 
 			using (ActiLifeAPILibrary.ActiLifeAPIConnection api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 			{
+				try { api.Connect(); }
+				catch { }
+
 				using (TestForm t = new TestForm())
 				{
 					t.SetAPI(api);

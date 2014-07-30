@@ -143,6 +143,7 @@
 			// btnSend
 			// 
 			this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnSend.Enabled = false;
 			this.btnSend.Image = global::ActiLifeAPITester.Properties.Resources.send_receive_all_folders;
 			this.btnSend.Location = new System.Drawing.Point(267, 4);
 			this.btnSend.Name = "btnSend";
@@ -254,12 +255,12 @@
 			this.menuResponseArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearLogToolStripMenuItem});
 			this.menuResponseArea.Name = "menuResponseArea";
-			this.menuResponseArea.Size = new System.Drawing.Size(153, 48);
+			this.menuResponseArea.Size = new System.Drawing.Size(125, 26);
 			// 
 			// clearLogToolStripMenuItem
 			// 
 			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.clearLogToolStripMenuItem.Text = "Clear Log";
 			// 
 			// TestForm
