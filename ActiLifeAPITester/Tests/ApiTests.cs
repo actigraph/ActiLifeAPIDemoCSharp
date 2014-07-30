@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ActiLifeAPILibrary;
 
 namespace ActiLifeAPITester.Tests
 {
@@ -57,7 +58,7 @@ namespace ActiLifeAPITester.Tests
 			{
 				if (d == null) return false;
 
-				if (!GetValueFromJToken<bool>(d, "Success", false)) return false;
+				if (!d.GetValueFromJToken<bool>("Success", false)) return false;
 
 				JToken payload;
 				if (d.TryGetValue("payload", StringComparison.CurrentCultureIgnoreCase, out payload))
@@ -72,36 +73,6 @@ namespace ActiLifeAPITester.Tests
 			}
 
 			#endregion IApiTest Members
-
-			public T GetValueFromJToken<T>(Newtonsoft.Json.Linq.JToken j, string key, T defaultValue)
-			{
-				JToken obj = null;
-				if (j is JObject)
-					obj = ((JObject)j).GetValue(key, StringComparison.CurrentCultureIgnoreCase);
-				else
-					obj = j[key.ToLower()];
-
-				if (obj == null) throw new ArgumentException("Unable to locate JSON token: \"" + key + "\"");
-
-				T returnObj = default(T);
-
-				if (obj is Newtonsoft.Json.Linq.JArray)
-					returnObj = obj.ToObject<T>();
-				else
-					returnObj = obj.Value<T>();
-
-				//Convert UTC datetimes back to local system time.  API is ISO8601; UTC is used!
-				if (returnObj is DateTime)
-					returnObj = Cast<T>(Convert.ToDateTime(returnObj).ToLocalTime());
-
-				return returnObj;
-			}
-
-			/// <summary>Method used to dynamically cast (through reflection) one type to another type (object to a correct type).</summary>
-			public static T Cast<T>(object o)
-			{
-				return (T)o;
-			}
 		}
 
 		public class Tests
@@ -115,7 +86,7 @@ namespace ActiLifeAPITester.Tests
 
 				protected override bool IsValidPayload(JToken payload)
 				{
-					return GetValueFromJToken<string>(payload, "version", null) != null;
+					return payload.GetValueFromJToken<string>("version", null) != null;
 				}
 			}
 
@@ -128,7 +99,7 @@ namespace ActiLifeAPITester.Tests
 
 				protected override bool IsValidPayload(JToken payload)
 				{
-					return GetValueFromJToken<string>(payload, "version", null) != null;
+					return payload.GetValueFromJToken<string>("version", null) != null;
 				}
 			}
 
@@ -177,7 +148,7 @@ namespace ActiLifeAPITester.Tests
 				{
 					if (!base.IsValidPayload(payload)) return false;
 
-					dynamic d = this.GetValueFromJToken<dynamic>(payload, "results", null);
+					dynamic d = payload.GetValueFromJToken<dynamic>("results", null);
 
 					if (d == null || d.NonWearBouts == null) return false;
 
