@@ -106,6 +106,7 @@
     <Compile Include="Models\Request\USBList.cs" />
     <Compile Include="Models\Request\WirelessBurst.cs" />
     <Compile Include="Models\Request\WirelessIdentify.cs" />
+    <Compile Include="Models\Request\WirelessInitialize.cs" />
     <Compile Include="Models\Request\WirelessRealtimeStart.cs" />
     <Compile Include="Models\Request\WirelessRealtimeStop.cs" />
     <Compile Include="Models\Request\WirelessStart.cs" />
