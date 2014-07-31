@@ -14,8 +14,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 	{
 		/// <summary>
 		/// Caller defined (no restrictions on value).
-		/// Notes:
-		/// Max length of 255 characters for GT3X+ devices or newer.
+        /// <para></para>
+        /// <para>Notes: </para>
+        /// <para>Max length of 255 characters for GT3X+ devices or newer.</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Always, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public string SubjectName { get; set; }
@@ -34,17 +35,18 @@ namespace ActiLifeAPILibrary.Models.Actions
 
 		/// <summary>
 		/// Sample rate to use. Can be Hz value or epoch length in seconds.
-		/// Notes:
-		/// This depends on ability of device. Older devices are unable to handle multiple samples per second and use an epoch of the seconds.
-		/// Accepted Hz values:
-		/// 30 (default),
-		/// 40,
-		/// 50,
-		/// 60,
-		/// 70,
-		/// 80,
-		/// 90,
-		/// 100
+		/// <para></para>
+        /// <para>Notes:</para>
+        /// <para>This depends on ability of device. Older devices are unable to handle multiple samples per second and use an epoch of the seconds.</para>
+        /// <para>Accepted Hz values:</para>
+        /// <para>30 (default), 
+		/// 40, 
+		/// 50, 
+		/// 60, 
+		/// 70, 
+		/// 80, 
+		/// 90, 
+		/// 100</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		[DefaultValue(30)]
@@ -52,8 +54,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 
 		/// <summary>
 		/// Amount of axis to enable while recording. This is device dependant (GT3X+ and newer default to 3).
-		/// Accepted values:
-		/// 1,2,3
+        /// <para></para>
+        /// <para>Accepted values: 
+		/// 1, 2, 3</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public int Axis { get; set; }
@@ -96,22 +99,25 @@ namespace ActiLifeAPILibrary.Models.Actions
 
 		/// <summary>
 		/// Whether to prevent the device from entering a sleep mode during inactivity.
-		/// Notes: This dramatically reduces battery life!
+        /// <para></para>
+        /// <para>Notes: This dramatically reduces battery life!</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public bool DisableSleepMode { get; set; }
 
 		/// <summary>
 		/// Enable ANT Wireless capabilities.
-		/// Notes: Only available on w-Devices such as wGT3X+ and wActiSleep+.
-		/// Ignored by WirelessInitialize action.
+        /// <para></para>
+        /// <para>Notes: Only available on w-Devices such as wGT3X+ and wActiSleep+.</para>
+        /// <para>Ignored by WirelessInitialize action.</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public bool AntWireless { get; set; }
 
 		/// <summary>
 		/// Enable Data Summary capabilities (stores daily summary data into expenditure ‘buckets’).
-		/// Notes: Only available on w-Devices such as wGT3X+ and wActiSleep+.
+        /// <para></para>
+        /// <para>Notes: Only available on w-Devices such as wGT3X+ and wActiSleep+.</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public bool DataSummary { get; set; }

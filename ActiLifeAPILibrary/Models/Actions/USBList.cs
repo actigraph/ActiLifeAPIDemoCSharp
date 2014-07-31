@@ -13,9 +13,11 @@ namespace ActiLifeAPILibrary.Models.Actions
 	public class USBList
 	{
 		/// <summary>
-		/// Instructs ActiLife to continue notifying when devices are connected. If disabled, ActiLife will send a response for each device connected and NOT continue to notify when new devices are connected.
-		/// Notes:
-		/// To regain the asynchronous functionality simply issue the USBList action with this turned on.
+		/// Instructs ActiLife to continue notifying when devices are connected. 
+        /// <para>If disabled, ActiLife will send a response for each device connected and NOT continue to notify when new devices are connected.</para>
+        /// <para></para>
+        /// <para>Notes:</para>
+        /// <para>To regain the asynchronous functionality simply issue the USBList action with this turned on.</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		[DefaultValue(false)]

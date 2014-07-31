@@ -4,8 +4,9 @@ namespace ActiLifeAPILibrary.Models.Request
 {
     /// <summary>
     /// Identifies an ANT device by flashing the LEDs.
-    /// Notes:
-    /// - Wireless scanning must have been started previously.
+    /// <para></para>
+    /// <para>Notes:</para>
+    /// <para>- Wireless scanning must have been started previously.</para>
     /// </summary>
     public class WirelessIdentify : RequestBase
     {

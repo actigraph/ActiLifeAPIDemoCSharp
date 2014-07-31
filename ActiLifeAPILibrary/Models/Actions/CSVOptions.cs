@@ -13,15 +13,15 @@ namespace ActiLifeAPILibrary.Models.Actions
 	{
 		/// <summary>
 		/// Includes the following information in the header.
-		/// Subject Name
-		/// Gender
-		/// Height
-		/// Weight
-		/// Date of Birth
-		/// Age
-		/// Race
-		/// Side
-		/// Dominance
+        /// <para>Subject Name, 
+        /// Gender, 
+        /// Height, 
+        /// Weight, 
+        /// Date of Birth, 
+        /// Age, 
+        /// Race, 
+        /// Side, 
+        /// Dominance</para>
 		/// </summary>
 		[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
 		public bool IncludeMetadata { get; set; }

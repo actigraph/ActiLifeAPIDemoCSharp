@@ -4,10 +4,11 @@ namespace ActiLifeAPILibrary.Models.Request
 {
     /// <summary>
     /// Start receiving data real time from an ANT device. Wireless scanning must have been started previously.
-    /// Notes:
-    /// - Wireless scanning must have been started previously.
-    /// - Real time streaming data will not arrive if the device isn’t being moved; the data should be considered latched. 
-    ///   If sleep mode is disabled during initialization then continuous data is to be expected.
+    /// <para></para>
+    /// <para>Notes:</para>
+    /// <para>- Wireless scanning must have been started previously.</para>
+    /// <para>- Real time streaming data will not arrive if the device isn’t being moved; the data should be considered latched. </para>
+    /// <para>-  If sleep mode is disabled during initialization then continuous data is to be expected.</para>
     /// </summary>
     public class WirelessRealtimeStart : RequestBase
     {

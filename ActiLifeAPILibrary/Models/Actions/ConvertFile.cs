@@ -14,8 +14,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 	{
 		/// <summary>
 		/// The source file to convert.
-		/// Accepted Input Formats:
-		/// gt3x
+		/// <para></para>
+        /// <para>Accepted Input Formats:</para>
+        /// <para>gt3x</para>
 		/// </summary>
 		[JsonProperty(Required = Required.Always, DefaultValueHandling = DefaultValueHandling.Populate)]
 		public string FileInputPath { get; set; }

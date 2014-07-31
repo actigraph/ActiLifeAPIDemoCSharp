@@ -4,9 +4,10 @@ namespace ActiLifeAPILibrary.Models.Request
 {
     /// <summary>
     /// Downloads requested number of minutes of data from an ANT device.
-    /// Notes:
-    /// - Wireless scanning must have been started previously.
-    /// - Does NOT delete data from the device
+    /// <para></para>
+    /// <para>Notes:</para>
+    /// <para>- Wireless scanning must have been started previously.</para>
+    /// <para>- Does NOT delete data from the device</para>
     /// </summary>
     public class WirelessBurst : RequestBase
     {

@@ -4,9 +4,10 @@ namespace ActiLifeAPILibrary.Models.Request
 {
     /// <summary>
     /// Starts the wireless scan of devices.
-    /// Notes:
-    /// - Response payload is only set when a device has been detected and will only contain the ANT ID of the device (everything else will be defaulted values). 
-    ///   A second response will be sent when the device’s information is known.
+    /// <para></para>
+    /// <para>Notes:</para>
+    /// <para>- Response payload is only set when a device has been detected and will only contain the ANT ID of the device (everything else will be defaulted values). 
+    ///   A second response will be sent when the device’s information is known.</para>
     /// </summary>
     public class WirelessStart : RequestBase
     {

@@ -5,8 +5,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 {
     /// <summary>
     /// Wear Time Validation information from a .GT3X file or .AGD file. 
-    /// This is specific for NHANES. 
-    /// A more robust WTV API action will be added in the future.
+    /// <para></para>
+    /// <para>This is specific for NHANES. </para>
+    /// <para>A more robust WTV API action will be added in the future.</para>
     /// </summary>
 	public class NhanesWtv : ActionBase
     {
