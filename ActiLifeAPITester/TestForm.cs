@@ -116,7 +116,7 @@ namespace ActiLifeAPITester
 
             #region response right click menu
             
-            clearLogToolStripMenuItem.Click += (obj, sender) => txtResponse.Clear();
+            clearLogToolStripMenuItem.Click += (obj, sender) => { txtResponse.Clear(); lblResponseStatus.Text = ""; imgStatus.Image = null; }
             saveLogToolStripMenuItem.Click += (obj, sender) =>
             {
                 using (var saveFileDialog = new SaveFileDialog())
