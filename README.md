@@ -40,9 +40,19 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
     if (!api.IsConnected) return; //can also use connected bool
     
     JObject parsedJSON = JsonConvert.DeserializeObject<JObject>(await api.GetActiLifeVersion());
-    string version = parsedJSON.GetValueFromJToken<string>("Success");
-      
-    Console.WriteLine(version);
+    
+    bool success = parsedJSON.GetValueFromJToken<bool>("Success");
+    if (!success) Console.WriteLine("ActiLife did not handle API command!");
+    else
+    {
+      var payload = parsedJSON['payload'];
+      if (payload != null)
+      {
+        string version = payload.GetValueFromJToken<string>("Version");
+        
+        Console.WriteLine(version);
+      }
+    }
   }
   catch(AggregateException ex) { } //handle Task specific exception
   catch(Exception ex) { } //handle misc exception
