@@ -9,17 +9,78 @@ This codebase is built on the ActiLife API documentation: https://github.com/act
 
 ActiLifeAPILibrary
 ==================
-Library that provides an easy to use implementation of ActiLife API.  This Library handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods.  The Library is based on .NET 4.0 and utilizes Tasks to ensure long running tasks do not block the calling threads.
+Library that provides an easy to use implementation of ActiLife API.  This ActilifeAPILibrary handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods.  The Library is based on .NET 4.0 and utilizes Tasks to ensure long running tasks do not block the calling threads.
 
-Example usage of Library:
+#### Connecting to ActiLife via the API and obtaining a result
+
 
 ```
 using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
     bool connected = await api.Connect();
-    if (api.IsConnected)
-      var response = await api.GetActiLifeVersion();
+    if (!api.IsConnected) return; //can also use connected bool
+      
+    string responseJSON = await api.GetActiLifeVersion();
+  }
+  catch(AggregateException ex) { } //handle Task exception
+}
+```
+
+#### Parsing JSON Data
+
+Parsing data received from ActiLife is recommended via JSON.net.  The ActilifeAPILibrary contains an extension to easily obtain data from the JSON.net JObject/JToken class that is returned from Deserializing the JSON string:
+
+```
+using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
+{
+  try {
+    bool connected = await api.Connect();
+    if (!api.IsConnected) return; //can also use connected bool
+    
+    JObject parsedJSON = JsonConvert.DeserializeObject<JObject>(await api.GetActiLifeVersion());
+    string version = parsedJSON.GetValueFromJToken<string>("Success");
+      
+    Console.WriteLine(version);
+  }
+  catch(AggregateException ex) { } //handle Task exception
+}
+```
+
+Will print a version string similar to:
+
+> 6.11.0
+
+The **GetValueFromJToken()** is an extension and might require a using statement to be used:
+
+```
+using ActiLifeAPILibrary;
+```
+
+#### Using Library endpoints with Request Models
+
+All ActiLife API endpoints (or Actions) are represented with the ActilifeAPILibrary extended on the **ActiLifeAPIConnection**.  Some of these Actions require options (or Arguments) for ActiLife to respond.  These models can be inlined to the api call:
+
+```
+using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
+{
+  try {
+    bool connected = await api.Connect();
+    if (!api.IsConnected) return; //can also use connected bool
+    
+    var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+    
+    string responseJSON = api.ConvertFile(
+      new ActiLifeAPILibrary.Models.Request.ConvertFile
+			{
+				Options = new ActiLifeAPILibrary.Models.Actions.ConvertFile
+				{
+					FileInputPath = System.IO.Path.Combine(assemblyDir, "input.gt3x"),
+					FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
+					FileOutputFormat = "rawcsv"
+				}
+			}
+		);
   }
   catch(AggregateException ex) { } //handle Task exception
 }
