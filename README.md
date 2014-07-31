@@ -23,7 +23,8 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
       
     string responseJSON = await api.GetActiLifeVersion();
   }
-  catch(AggregateException ex) { } //handle Task exception
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
 }
 ```
 
@@ -43,7 +44,8 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
       
     Console.WriteLine(version);
   }
-  catch(AggregateException ex) { } //handle Task exception
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
 }
 ```
 
@@ -72,17 +74,18 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
     
     string responseJSON = api.ConvertFile(
       new ActiLifeAPILibrary.Models.Request.ConvertFile
-			{
-				Options = new ActiLifeAPILibrary.Models.Actions.ConvertFile
-				{
-					FileInputPath = System.IO.Path.Combine(assemblyDir, "input.gt3x"),
-					FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
-					FileOutputFormat = "rawcsv"
-				}
-			}
-		);
+      {
+        Options = new ActiLifeAPILibrary.Models.Actions.ConvertFile
+        {
+          FileInputPath = System.IO.Path.Combine(assemblyDir, "input.gt3x"),
+          FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
+          FileOutputFormat = "rawcsv"
+        }
+      }
+    );
   }
-  catch(AggregateException ex) { } //handle Task exception
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
 }
 ```
 
