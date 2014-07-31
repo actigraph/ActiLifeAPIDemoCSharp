@@ -32,21 +32,21 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestForm));
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.grpTests = new System.Windows.Forms.GroupBox();
+			this.btnPopulateTest = new System.Windows.Forms.Button();
 			this.grpConnection = new System.Windows.Forms.GroupBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
+			this.btnConnect = new System.Windows.Forms.Button();
 			this.tmrConnected = new System.Windows.Forms.Timer(this.components);
 			this.menuContextResponse = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.btnConnect = new System.Windows.Forms.Button();
-			this.btnPopulateTest = new System.Windows.Forms.Button();
 			this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.saveLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnlSendReceive = new SplitContainerEx();
 			this.txtRequest = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.btnSend = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.pnlFlowStatus = new System.Windows.Forms.FlowLayoutPanel();
 			this.lblResponseStatus = new System.Windows.Forms.Label();
 			this.imgStatus = new System.Windows.Forms.PictureBox();
 			this.txtResponse = new System.Windows.Forms.TextBox();
@@ -59,7 +59,7 @@
 			this.pnlSendReceive.Panel2.SuspendLayout();
 			this.pnlSendReceive.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.flowLayoutPanel1.SuspendLayout();
+			this.pnlFlowStatus.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgStatus)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -85,6 +85,18 @@
 			this.grpTests.TabStop = false;
 			this.grpTests.Text = "Built In Tests";
 			// 
+			// btnPopulateTest
+			// 
+			this.btnPopulateTest.AutoSize = true;
+			this.btnPopulateTest.Image = global::ActiLifeAPITester.Properties.Resources.wand;
+			this.btnPopulateTest.Location = new System.Drawing.Point(273, 17);
+			this.btnPopulateTest.Name = "btnPopulateTest";
+			this.btnPopulateTest.Size = new System.Drawing.Size(79, 23);
+			this.btnPopulateTest.TabIndex = 1;
+			this.btnPopulateTest.Text = "Populate";
+			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnPopulateTest.UseVisualStyleBackColor = true;
+			// 
 			// grpConnection
 			// 
 			this.grpConnection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -108,6 +120,19 @@
 			this.lblConnectionStatus.Size = new System.Drawing.Size(232, 13);
 			this.lblConnectionStatus.TabIndex = 1;
 			// 
+			// btnConnect
+			// 
+			this.btnConnect.AutoSize = true;
+			this.btnConnect.Image = global::ActiLifeAPITester.Properties.Resources.connect;
+			this.btnConnect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnConnect.Location = new System.Drawing.Point(6, 17);
+			this.btnConnect.Name = "btnConnect";
+			this.btnConnect.Size = new System.Drawing.Size(76, 23);
+			this.btnConnect.TabIndex = 0;
+			this.btnConnect.Text = "Connect";
+			this.btnConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnConnect.UseVisualStyleBackColor = true;
+			// 
 			// tmrConnected
 			// 
 			this.tmrConnected.Enabled = true;
@@ -122,42 +147,17 @@
 			this.menuContextResponse.Name = "menuContextResponse";
 			this.menuContextResponse.Size = new System.Drawing.Size(125, 54);
 			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
-			// 
-			// btnConnect
-			// 
-			this.btnConnect.AutoSize = true;
-			this.btnConnect.Image = global::ActiLifeAPITester.Properties.Resources.connect;
-			this.btnConnect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnConnect.Location = new System.Drawing.Point(6, 17);
-			this.btnConnect.Name = "btnConnect";
-			this.btnConnect.Size = new System.Drawing.Size(76, 23);
-			this.btnConnect.TabIndex = 0;
-			this.btnConnect.Text = "Connect";
-			this.btnConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnConnect.UseVisualStyleBackColor = true;
-			// 
-			// btnPopulateTest
-			// 
-			this.btnPopulateTest.AutoSize = true;
-			this.btnPopulateTest.Image = global::ActiLifeAPITester.Properties.Resources.wand;
-			this.btnPopulateTest.Location = new System.Drawing.Point(273, 17);
-			this.btnPopulateTest.Name = "btnPopulateTest";
-			this.btnPopulateTest.Size = new System.Drawing.Size(79, 23);
-			this.btnPopulateTest.TabIndex = 1;
-			this.btnPopulateTest.Text = "Populate";
-			this.btnPopulateTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnPopulateTest.UseVisualStyleBackColor = true;
-			// 
 			// clearLogToolStripMenuItem
 			// 
 			this.clearLogToolStripMenuItem.Image = global::ActiLifeAPITester.Properties.Resources.cell_clear;
 			this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
 			this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
 			this.clearLogToolStripMenuItem.Text = "Clear Log";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
 			// 
 			// saveLogToolStripMenuItem
 			// 
@@ -184,7 +184,7 @@
 			// 
 			// pnlSendReceive.Panel2
 			// 
-			this.pnlSendReceive.Panel2.Controls.Add(this.flowLayoutPanel1);
+			this.pnlSendReceive.Panel2.Controls.Add(this.pnlFlowStatus);
 			this.pnlSendReceive.Panel2.Controls.Add(this.txtResponse);
 			this.pnlSendReceive.Panel2.Controls.Add(this.label2);
 			this.pnlSendReceive.Size = new System.Drawing.Size(840, 362);
@@ -237,24 +237,25 @@
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Request (to ActiLife):";
 			// 
-			// flowLayoutPanel1
+			// pnlFlowStatus
 			// 
-			this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.pnlFlowStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.flowLayoutPanel1.Controls.Add(this.lblResponseStatus);
-			this.flowLayoutPanel1.Controls.Add(this.imgStatus);
-			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(185, 0);
-			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(655, 38);
-			this.flowLayoutPanel1.TabIndex = 7;
+			this.pnlFlowStatus.Controls.Add(this.lblResponseStatus);
+			this.pnlFlowStatus.Controls.Add(this.imgStatus);
+			this.pnlFlowStatus.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+			this.pnlFlowStatus.Location = new System.Drawing.Point(139, 0);
+			this.pnlFlowStatus.Name = "pnlFlowStatus";
+			this.pnlFlowStatus.Size = new System.Drawing.Size(701, 38);
+			this.pnlFlowStatus.TabIndex = 7;
 			// 
 			// lblResponseStatus
 			// 
 			this.lblResponseStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblResponseStatus.AutoEllipsis = true;
 			this.lblResponseStatus.AutoSize = true;
 			this.lblResponseStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.lblResponseStatus.Location = new System.Drawing.Point(649, 0);
+			this.lblResponseStatus.Location = new System.Drawing.Point(695, 0);
 			this.lblResponseStatus.Name = "lblResponseStatus";
 			this.lblResponseStatus.Padding = new System.Windows.Forms.Padding(3, 15, 0, 10);
 			this.lblResponseStatus.Size = new System.Drawing.Size(3, 38);
@@ -263,7 +264,7 @@
 			// 
 			// imgStatus
 			// 
-			this.imgStatus.Location = new System.Drawing.Point(630, 0);
+			this.imgStatus.Location = new System.Drawing.Point(676, 0);
 			this.imgStatus.Margin = new System.Windows.Forms.Padding(3, 0, 0, 10);
 			this.imgStatus.Name = "imgStatus";
 			this.imgStatus.Padding = new System.Windows.Forms.Padding(3, 15, 0, 10);
@@ -322,8 +323,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.pnlSendReceive)).EndInit();
 			this.pnlSendReceive.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
-			this.flowLayoutPanel1.ResumeLayout(false);
-			this.flowLayoutPanel1.PerformLayout();
+			this.pnlFlowStatus.ResumeLayout(false);
+			this.pnlFlowStatus.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgStatus)).EndInit();
 			this.ResumeLayout(false);
 
@@ -344,7 +345,7 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblConnectionStatus;
 		private System.Windows.Forms.Button btnConnect;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+		private System.Windows.Forms.FlowLayoutPanel pnlFlowStatus;
 		private System.Windows.Forms.Label lblResponseStatus;
 		private System.Windows.Forms.Timer tmrConnected;
 		private System.Windows.Forms.ContextMenuStrip menuContextResponse;

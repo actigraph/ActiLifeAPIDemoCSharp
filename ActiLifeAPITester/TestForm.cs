@@ -89,53 +89,58 @@ namespace ActiLifeAPITester
 				}
 				catch (Exception ex) { MessageBox.Show(this, ex.ToString(), "Issue Sending Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
-                //determine if response was successful
-			    try
-			    {
-                    JObject j = JsonConvert.DeserializeObject<JObject>(response);
+				//determine if response was successful
+				try
+				{
+					JObject j = JsonConvert.DeserializeObject<JObject>(response);
 
 					bool success = j.GetValueFromJToken<bool>("Success", false);
 
-					
+
 					imgStatus.Image = success ? Properties.Resources.tick_circle_frame : Properties.Resources.cross;
 
 					if (success)
 						lblResponseStatus.Text = "Successfully Sent";
 					else
-						lblResponseStatus.Text = "Error: \"" +  j.GetValueFromJToken<string>("Error", "") + "\"";
-			    }
-			    catch (Exception ex)
-			    {
-                    MessageBox.Show(this, ex.ToString(), "Issue Parsing Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
-			    }
-			    
+						lblResponseStatus.Text = "Error: \"" + j.GetValueFromJToken<string>("Error", "") + "\"";
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(this, ex.ToString(), "Issue Parsing Request", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+				}
 
-			    txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
+
+				txtResponse.AppendText("RESPONSE: \r\n" + GetPrettyPrintedJson(response));
 				txtResponse.SelectionStart = txtResponse.TextLength - 1;
 			};
 
-            #region response right click menu
+			#region response right click menu
 
 			clearLogToolStripMenuItem.Click += (obj, sender) => { txtResponse.Clear(); lblResponseStatus.Text = ""; imgStatus.Image = null; };
-            saveLogToolStripMenuItem.Click += (obj, sender) =>
-            {
-                using (var saveFileDialog = new SaveFileDialog())
-                {
-                    saveFileDialog.Filter = "TXT Files (*.txt)|*.txt";
-				    saveFileDialog.Title = "Save to a text File";
-                    var result = saveFileDialog.ShowDialog();
-                    if (result != DialogResult.OK)
-                        return;
+			saveLogToolStripMenuItem.Click += (obj, sender) =>
+			{
+				using (var saveFileDialog = new SaveFileDialog())
+				{
+					saveFileDialog.Filter = "TXT Files (*.txt)|*.txt";
+					saveFileDialog.Title = "Save to a text File";
+					var result = saveFileDialog.ShowDialog();
+					if (result != DialogResult.OK)
+						return;
 
-                    using (StreamWriter s = new StreamWriter(saveFileDialog.FileName))
-                        s.Write(txtResponse.Text);
+					using (StreamWriter s = new StreamWriter(saveFileDialog.FileName))
+						s.Write(txtResponse.Text);
 
-                    Process.Start(saveFileDialog.FileName);
-                }
-            };
-           
-            
-            #endregion response right click menu
+					Process.Start(saveFileDialog.FileName);
+				}
+			};
+
+
+			#endregion response right click menu
+
+			this.Resize += (o, e) =>
+			{
+				lblResponseStatus.MaximumSize = new Size(pnlFlowStatus.ClientRectangle.Width - pnlFlowStatus.Padding.Horizontal - imgStatus.Width - imgStatus.Padding.Horizontal - imgStatus.Margin.Horizontal, lblResponseStatus.Height);
+			};
 
 			this.HandleCreated += (o, e) => { FillAPITests(); btnConnect.Focus(); };
 			btnPopulateTest.Click += (o, e) => PopulateAPITestSelected();
@@ -170,7 +175,7 @@ namespace ActiLifeAPITester
 			foreach (var tests in (from t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
 								   where t.GetInterfaces().Contains(typeof(Tests.IApiTest))
 										&& t.GetConstructor(Type.EmptyTypes) != null && t.IsClass && !t.IsAbstract
-                                   orderby Activator.CreateInstance(t).ToString()
+								   orderby Activator.CreateInstance(t).ToString()
 								   select Activator.CreateInstance(t) as Tests.IApiTest))
 				comboBox1.Items.Add(tests);
 
@@ -238,15 +243,15 @@ namespace ActiLifeAPITester
 					}
 					break;
 				case (Keys.Enter | Keys.Control):
-                case Keys.F5:
+				case Keys.F5:
 					e.SuppressKeyPress = true;
 					btnSend.PerformClick();
 					break;
-                case (Keys.Control | Keys.A):
-			        e.SuppressKeyPress = true;
-                    TextBox txtBox = (TextBox)sender;
-                    txtBox.SelectAll();
-			        break;
+				case (Keys.Control | Keys.A):
+					e.SuppressKeyPress = true;
+					TextBox txtBox = (TextBox)sender;
+					txtBox.SelectAll();
+					break;
 			}
 		}
 	}
