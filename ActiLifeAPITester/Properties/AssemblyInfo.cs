@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("GUI that tests ActiLife API from ActiGraph.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ActiGraph, LLC")]
-[assembly: AssemblyProduct("ActiLife")]
+[assembly: AssemblyProduct("ActiLife API")]
 [assembly: AssemblyCopyright("Copyright © 2013-2014 ActiGraph, LLC. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

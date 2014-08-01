@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ActiLifeAPILibrary")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ActiLife API Library")]
+[assembly: AssemblyDescription("Library that provides an easy to use implementation of ActiLife API. This ActilifeAPILibrary handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ActiLifeAPILibrary")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("ActiGraph, LLC")]
+[assembly: AssemblyProduct("ActiLife API")]
+[assembly: AssemblyCopyright("Copyright © 2014 ActiGraph, LLC. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
