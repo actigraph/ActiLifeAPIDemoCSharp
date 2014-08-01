@@ -14,7 +14,7 @@ Library that provides an easy to use implementation of ActiLife API.  This Actil
 #### Connecting to ActiLife via the API and obtaining a result
 
 
-```
+```c#
 using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
@@ -32,7 +32,7 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 
 Parsing data received from ActiLife is recommended via JSON.net.  The ActilifeAPILibrary contains an extension to easily obtain data from the JSON.net JObject/JToken class that is returned from Deserializing the JSON string:
 
-```
+```c#
 using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
@@ -73,7 +73,7 @@ using ActiLifeAPILibrary;
 
 All ActiLife API endpoints (or Actions) are represented with the ActilifeAPILibrary extended on the **ActiLifeAPIConnection**.  Some of these Actions require options (or Arguments) for ActiLife to respond.  These models can be inlined to the api call:
 
-```
+```c#
 using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
