@@ -45,18 +45,93 @@
 <h1>
 <a name="actilifeapilibrary" class="anchor" href="#actilifeapilibrary"><span class="octicon octicon-link"></span></a>ActiLifeAPILibrary</h1>
 
-<p>Library that provides an easy to use implementation of ActiLife API.  This Library handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods.  The Library is based on .NET 4.0 and utilizes Tasks to ensure long running tasks do not block the calling threads.</p>
+<p>Library that provides an easy to use implementation of ActiLife API.  This ActilifeAPILibrary handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods.  The Library is based on .NET 4.0 and utilizes Tasks to ensure long running tasks do not block the calling threads.</p>
 
-<p>Example usage of Library:</p>
+<h4>
+<a name="connecting-to-actilife-via-the-api-and-obtaining-a-result" class="anchor" href="#connecting-to-actilife-via-the-api-and-obtaining-a-result"><span class="octicon octicon-link"></span></a>Connecting to ActiLife via the API and obtaining a result</h4>
 
 <pre><code>using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
 {
   try {
     bool connected = await api.Connect();
-    if (api.IsConnected)
-      var response = await api.GetActiLifeVersion();
+    if (!api.IsConnected) return; //can also use connected bool
+
+    string responseJSON = await api.GetActiLifeVersion();
   }
-  catch(AggregateException ex) { } //handle Task exception
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
+}
+</code></pre>
+
+<h4>
+<a name="parsing-json-data" class="anchor" href="#parsing-json-data"><span class="octicon octicon-link"></span></a>Parsing JSON Data</h4>
+
+<p>Parsing data received from ActiLife is recommended via JSON.net.  The ActilifeAPILibrary contains an extension to easily obtain data from the JSON.net JObject/JToken class that is returned from Deserializing the JSON string:</p>
+
+<pre><code>using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
+{
+  try {
+    bool connected = await api.Connect();
+    if (!api.IsConnected) return; //can also use connected bool
+
+    JObject parsedJSON = JsonConvert.DeserializeObject&lt;JObject&gt;(await api.GetActiLifeVersion());
+
+    bool success = parsedJSON.GetValueFromJToken&lt;bool&gt;("Success");
+    if (!success) Console.WriteLine("ActiLife did not handle API command!");
+    else
+    {
+      var payload = parsedJSON['payload'];
+      if (payload != null)
+      {
+        string version = payload.GetValueFromJToken&lt;string&gt;("Version");
+
+        Console.WriteLine(version);
+      }
+    }
+  }
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
+}
+</code></pre>
+
+<p>Will print a version string similar to:</p>
+
+<blockquote>
+<p>6.11.0</p>
+</blockquote>
+
+<p>The <strong>GetValueFromJToken()</strong> is an extension and might require a using statement to be used:</p>
+
+<pre><code>using ActiLifeAPILibrary;
+</code></pre>
+
+<h4>
+<a name="using-library-endpoints-with-request-models" class="anchor" href="#using-library-endpoints-with-request-models"><span class="octicon octicon-link"></span></a>Using Library endpoints with Request Models</h4>
+
+<p>All ActiLife API endpoints (or Actions) are represented with the ActilifeAPILibrary extended on the <strong>ActiLifeAPIConnection</strong>.  Some of these Actions require options (or Arguments) for ActiLife to respond.  These models can be inlined to the api call:</p>
+
+<pre><code>using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
+{
+  try {
+    bool connected = await api.Connect();
+    if (!api.IsConnected) return; //can also use connected bool
+
+    var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+    string responseJSON = api.ConvertFile(
+      new ActiLifeAPILibrary.Models.Request.ConvertFile
+      {
+        Options = new ActiLifeAPILibrary.Models.Actions.ConvertFile
+        {
+          FileInputPath = System.IO.Path.Combine(assemblyDir, "input.gt3x"),
+          FileOutputPath = System.IO.Path.Combine(assemblyDir, "output.csv"),
+          FileOutputFormat = "rawcsv"
+        }
+      }
+    );
+  }
+  catch(AggregateException ex) { } //handle Task specific exception
+  catch(Exception ex) { } //handle misc exception
 }
 </code></pre>
 
