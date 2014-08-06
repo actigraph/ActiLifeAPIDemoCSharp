@@ -45,7 +45,7 @@ using (var api = new ActiLifeAPILibrary.ActiLifeAPIConnection())
     if (!success) Console.WriteLine("ActiLife did not handle API command!");
     else
     {
-      var payload = parsedJSON['payload'];
+      var payload = parsedJSON["payload"];
       if (payload != null)
       {
         string version = payload.GetValueFromJToken<string>("Version");
