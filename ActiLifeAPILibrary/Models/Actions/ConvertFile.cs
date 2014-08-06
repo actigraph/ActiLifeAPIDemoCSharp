@@ -37,6 +37,11 @@ namespace ActiLifeAPILibrary.Models.Actions
 		/// Options for creating a CSV file if CSV is desired output.
 		/// </summary>
 		public CSVOptions CSVOptions { get; set; }
+		
+		/// <summary>
+		/// Options for creating an AGD file if AGD is desired output.
+		/// </summary>
+		public AGDOptions AGDOptions { get; set; }
 
 		/// <summary>
 		/// If enabled ActiLife will delete any file at the given FileOutputPath before converting. 
