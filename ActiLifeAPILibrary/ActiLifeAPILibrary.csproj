@@ -87,6 +87,7 @@
     <Compile Include="Models\Actions\USBIdentify.cs" />
     <Compile Include="Models\Actions\USBInitialize.cs" />
     <Compile Include="Models\Actions\USBList.cs" />
+    <Compile Include="Models\Actions\WearTimeValidation.cs" />
     <Compile Include="Models\Actions\WirelessBurst.cs" />
     <Compile Include="Models\Actions\WirelessIdentify.cs" />
     <Compile Include="Models\Actions\WirelessRealtimeStart.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Models\Request\USBIdentify.cs" />
     <Compile Include="Models\Request\USBInitialize.cs" />
     <Compile Include="Models\Request\USBList.cs" />
+    <Compile Include="Models\Request\WearTimeValidation.cs" />
     <Compile Include="Models\Request\WirelessBurst.cs" />
     <Compile Include="Models\Request\WirelessIdentify.cs" />
     <Compile Include="Models\Request\WirelessInitialize.cs" />
@@ -112,6 +114,12 @@
     <Compile Include="Models\Request\WirelessRealtimeStop.cs" />
     <Compile Include="Models\Request\WirelessStart.cs" />
     <Compile Include="Models\Request\WirelessStop.cs" />
+    <Compile Include="Models\WearTimeValidation\BasicWTVOptions.cs" />
+    <Compile Include="Models\WearTimeValidation\ChoiWTVOptions.cs" />
+    <Compile Include="Models\WearTimeValidation\DailyWTVOptions.cs" />
+    <Compile Include="Models\WearTimeValidation\FloatingWindowWTVOptions.cs" />
+    <Compile Include="Models\WearTimeValidation\IWTVOptions.cs" />
+    <Compile Include="Models\WearTimeValidation\TroianoWTVOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -86,6 +86,19 @@ namespace ActiLifeAPILibrary
         }
 
 		/// <summary>
+		/// Get wear time validation results for a single AGD file. [API 1.11]
+		/// </summary>
+		/// <param name="options">WearTimeValidation options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/weartimevalidation.md"/>
+		public async Task<string> WearTimeValidation(Models.Request.WearTimeValidation options)
+		{
+			if (options == null) throw new NullReferenceException("Must set Wear Time Validation options!");
+
+			return await SendData(options.ToJson());
+		}
+
+		/// <summary>
 		/// Get data scoring algorithm results for a single AGD file. [API 1.10]
 		/// </summary>
 		/// <param name="options">DataScoring options required for this Action.</param>

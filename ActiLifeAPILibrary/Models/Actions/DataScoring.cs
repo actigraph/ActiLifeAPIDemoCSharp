@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Actions
 {
+	/// <summary> Calculate Data Scoring results for a file. </summary>
     public class DataScoring : ActionBase
     {
         /// <summary>

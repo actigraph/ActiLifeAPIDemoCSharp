@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ActiLifeAPILibrary.Models.WearTimeValidation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ActiLifeAPILibrary;
@@ -167,6 +168,26 @@ namespace ActiLifeAPITester.Tests
 						Options = new ActiLifeAPILibrary.Models.Actions.DataScoring
 						{
 							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd")
+						}
+					}.ToJson();
+				}
+			}
+
+			public class WearTimeValidation : TestBase
+			{
+				public override string GetJSON()
+				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+					return new ActiLifeAPILibrary.Models.Request.WearTimeValidation
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.WearTimeValidation
+						{
+							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
+							Algorithm = "Choi",
+							ActiGraphDailyOptions = DailyWTVOptions.Default,
+							ChoiOptions = ChoiWTVOptions.Default,
+							TroianoOptions = TroianoWTVOptions.Default
 						}
 					}.ToJson();
 				}
