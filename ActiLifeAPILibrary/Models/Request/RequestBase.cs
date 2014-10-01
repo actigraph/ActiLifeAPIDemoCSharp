@@ -51,6 +51,8 @@ namespace ActiLifeAPILibrary.Models.Request
         [DefaultValue(typeof(object))]
 		public virtual dynamic Args { get; set; }
 
+		internal bool IgnoreUtcConverstion { get; set; }
+
 		/// <summary>
 		/// Obtains JSON for the given request.  Dates formatted in ISO/UTC.  Formatting is Indented.
 		/// </summary>
@@ -61,9 +63,16 @@ namespace ActiLifeAPILibrary.Models.Request
 				{
 					Formatting = Newtonsoft.Json.Formatting.Indented,
 					DateFormatHandling = DateFormatHandling.IsoDateFormat,
-					DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-					Converters = new List<JsonConverter>() { new ActiLifeAPILibrary.Converters.JSONCustomDateConverter() }
 				};
+
+			if (!IgnoreUtcConverstion)
+			{
+				dateFormattingSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+				dateFormattingSettings.Converters = new List<JsonConverter> {new Converters.JSONCustomDateConverter()};
+			}
+			else
+				dateFormattingSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+
 			return JsonConvert.SerializeObject(this, dateFormattingSettings);
 		}
 	}

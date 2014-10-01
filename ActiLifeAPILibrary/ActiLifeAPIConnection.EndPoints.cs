@@ -99,6 +99,19 @@ namespace ActiLifeAPILibrary
 		}
 
 		/// <summary>
+		/// Change a wear time validation period from wear to non-wear or vice versa. [API 1.11]
+		/// </summary>
+		/// <param name="options">ChangeWearTimeValidationPeriod options required for this Action.</param>
+		/// <returns>Task that will return the JSON result from ActiLife.</returns>
+		/// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/ChangeWearTimeValidationPeriod.md"/>
+		public async Task<string> ChangeWearTimeValidationPeriod(Models.Request.ChangeWearTimeValidationPeriod options)
+		{
+			if (options == null) throw new NullReferenceException("Must set ChangeWearTimeValidationPeriod options!");
+
+			return await SendData(options.ToJson());
+		}
+
+		/// <summary>
 		/// Get data scoring algorithm results for a single AGD file. [API 1.10]
 		/// </summary>
 		/// <param name="options">DataScoring options required for this Action.</param>

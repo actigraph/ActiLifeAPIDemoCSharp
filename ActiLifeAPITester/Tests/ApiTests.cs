@@ -193,6 +193,25 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
+			public class ChangeWearTimeValidationPeriod : TestBase
+			{
+				public override string GetJSON()
+				{
+					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+					return new ActiLifeAPILibrary.Models.Request.ChangeWearTimeValidationPeriod
+					{
+						Options = new ActiLifeAPILibrary.Models.Actions.ChangeWearTimeValidationPeriod
+						{
+							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
+							StartDateTime = DateTime.Now.Date,
+							StopDateTime = DateTime.Now.Date.AddHours(1),
+							IsWearPeriod = false
+						}
+					}.ToJson();
+				}
+			}
+
 			public class ConvertFile : TestBase
 			{
 				public override string GetJSON()
