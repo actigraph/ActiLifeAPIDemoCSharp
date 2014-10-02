@@ -29,11 +29,5 @@ namespace ActiLifeAPILibrary.Models.Actions
 		/// </summary>
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Ignore)]
 		public ChoiWTVOptions ChoiOptions { get; set; }
-
-		/// <summary>
-		/// Options for calculating ActiGraph Daily wear time validation.
-		/// </summary>
-		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Ignore)]
-		public DailyWTVOptions ActiGraphDailyOptions { get; set; }
 	}
 }

@@ -185,7 +185,6 @@ namespace ActiLifeAPITester.Tests
 						{
 							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
 							Algorithm = "Choi",
-							ActiGraphDailyOptions = DailyWTVOptions.Default,
 							ChoiOptions = ChoiWTVOptions.Default,
 							TroianoOptions = TroianoWTVOptions.Default
 						}
