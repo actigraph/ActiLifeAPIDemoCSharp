@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ActiLifeAPILibrary.Models.Actions;
 using ActiLifeAPILibrary.Models.WearTimeValidation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -207,23 +206,6 @@ namespace ActiLifeAPITester.Tests
 							StartDateTime = DateTime.Now.Date,
 							StopDateTime = DateTime.Now.Date.AddHours(1),
 							IsWearPeriod = false
-						}
-					}.ToJson();
-				}
-			}
-
-			public class CreateClinicalReport : TestBase
-			{
-				public override string GetJSON()
-				{
-					var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-					return new ActiLifeAPILibrary.Models.Request.CreateClinicalReport
-					{
-						Options = new ActiLifeAPILibrary.Models.Actions.CreateClinicalReport
-						{
-							FileInputPath = System.IO.Path.Combine(assemblyDir, "input.agd"),
-							ClinicalReportOptions = ClinicalReportOptions.Default
 						}
 					}.ToJson();
 				}

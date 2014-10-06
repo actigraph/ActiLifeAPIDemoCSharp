@@ -73,8 +73,6 @@
     <Compile Include="Models\Actions\AGDOptions.cs" />
     <Compile Include="Models\Actions\BioData.cs" />
     <Compile Include="Models\Actions\ChangeWearTimeValidationPeriod.cs" />
-    <Compile Include="Models\Actions\CreateClinicalReport.cs" />
-    <Compile Include="Models\Actions\ClinicalReportOptions.cs" />
     <Compile Include="Models\Actions\ConvertFile.cs" />
     <Compile Include="Models\Actions\CSVOptions.cs" />
     <Compile Include="Models\Actions\CutPointOptions.cs" />
@@ -102,7 +100,6 @@
     <Compile Include="Models\Request\ActiLifeVersion.cs" />
     <Compile Include="Models\Request\APIVersion.cs" />
     <Compile Include="Models\Request\ChangeWearTimeValidationPeriod.cs" />
-    <Compile Include="Models\Request\CreateClinicalReport.cs" />
     <Compile Include="Models\Request\ConvertFile.cs" />
     <Compile Include="Models\Request\DataScoring.cs" />
     <Compile Include="Models\Request\NHANESWTV.cs" />
