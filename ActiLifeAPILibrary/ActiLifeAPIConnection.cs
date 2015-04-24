@@ -18,7 +18,8 @@ namespace ActiLifeAPILibrary
 		private NamedPipeClientStream _pipe = null;
 		object _lock = new object();
 
-		public async Task<bool> Connect()
+        /// <param name="timeout">The number of milliseconds to wait for the server to respond before the connection times out. If ZERO, there is no timeouts</param>
+        public async Task<bool> Connect(int timeout = 0)
 		{
 			return await TaskEx.Run(() =>
 			{
@@ -32,7 +33,11 @@ namespace ActiLifeAPILibrary
 
 						IsConnecting = true;
 
-						_pipe.Connect();
+                        if (timeout > 0)
+                            _pipe.Connect(timeout);
+                        else
+                            _pipe.Connect();
+
 						_pipe.ReadMode = PipeTransmissionMode.Message; //important!
 
 						IsConnecting = false;
