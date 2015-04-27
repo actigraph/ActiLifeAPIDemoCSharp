@@ -124,6 +124,19 @@ namespace ActiLifeAPILibrary
 	        return await SendData(options.ToJson());
         }
 
+        /// <summary>
+        /// Calculate and export data scoring algorithm results for multiple AGD files. [API 1.11]
+        /// </summary>
+        /// <param name="options">DataScoringExport options required for this Action.</param>
+        /// <returns>Task that will return the JSON result from ActiLife.</returns>
+        /// <see cref="https://github.com/actigraph/ActiLifeAPIDocumentation/blob/master/actions/datascoringexport.md"/>
+        public async Task<string> DataScoringExport(Models.Request.DataScoringExport options)
+        {
+            if (options == null) throw new NullReferenceException("Must set DataScoringExport options!");
+
+            return await SendData(options.ToJson());
+        }
+
 		/// <summary>
 		/// Lists all connected USB devices and continues listing devices as they are plugged in. [API 1.1]
 		/// </summary>

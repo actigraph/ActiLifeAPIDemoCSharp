@@ -173,6 +173,23 @@ namespace ActiLifeAPITester.Tests
 				}
 			}
 
+            public class DataScoringExport : TestBase
+            {
+                public override string GetJSON()
+                {
+                    var assemblyDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+                    return new ActiLifeAPILibrary.Models.Request.DataScoringExport
+                    {
+                        Options = new ActiLifeAPILibrary.Models.Actions.DataScoringExport
+                        {
+                            FileInputPaths = new []{System.IO.Path.Combine(assemblyDir, "input.agd")},
+                            ExportLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                        }
+                    }.ToJson();
+                }
+            }
+
 			public class WearTimeValidation : TestBase
 			{
 				public override string GetJSON()

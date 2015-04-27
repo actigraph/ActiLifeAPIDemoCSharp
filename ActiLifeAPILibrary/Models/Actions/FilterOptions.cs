@@ -15,5 +15,9 @@ namespace ActiLifeAPILibrary.Models.Actions
 		[JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
 		[DefaultValue(false)]
 		public bool UseLogDiaries { get; set; }
+
+        [JsonProperty("GlobalDateTimeFilterOptions", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
+        [DefaultValue(null)]
+        public GlobalDateTimeFilterOptions GlobalDateTimeFilterOptions { get; set; }
 	}
 }
