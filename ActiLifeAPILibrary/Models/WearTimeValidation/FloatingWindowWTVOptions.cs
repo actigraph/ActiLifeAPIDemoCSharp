@@ -44,14 +44,22 @@
 		public Units MinimumWearTimePerDayUnits { get; set; }
 
 		/// <summary>
-		/// If set to true (and UseMinimumWearTimePerDay is true), require a specified number of days with wear time.
-		/// </summary>
-		public bool UseMinimumDaysOfValidWearTime { get; set; }
-		/// <summary>
 		/// The number of days with valid wear time required to make a data set required
 		/// If a dataset doesn't have the specified number of days, the entire file will be set to non-wear
 		/// </summary>
 		public int MinimumDaysOfValidWearTime { get; set; }
+
+        /// <summary>
+        /// The number of weekdays with valid wear time required to make a data set required
+        /// If a dataset doesn't have the specified number of weekdays, the entire file will be set to non-wear
+        /// </summary>
+        public int MinimumWeekDaysOfValidWearTime { get; set; }
+
+        /// <summary>
+        /// The number of weekend days with valid wear time required to make a data set required
+        /// If a dataset doesn't have the specified number of weekend days, the entire file will be set to non-wear
+        /// </summary>
+        public int MinimumWeekendDaysOfValidWearTime { get; set; }
 
 		/// <summary>
 		/// Controls if sleep periods should be used in this bout setting.
