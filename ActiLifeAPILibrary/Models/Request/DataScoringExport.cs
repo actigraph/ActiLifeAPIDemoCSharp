@@ -13,7 +13,7 @@ namespace ActiLifeAPILibrary.Models.Request
         public override string ToJson()
         {
             Args = Options;
-
+            IgnoreUtcConverstion = true;
             return base.ToJson();
         }
     }

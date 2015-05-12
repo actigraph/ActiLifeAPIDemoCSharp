@@ -105,10 +105,10 @@ namespace ActiLifeAPILibrary.Models.Actions
                     title = SpecificDate.ToShortDateString();
                     break;
                 case FilterType.DayRange:
-                    title = string.Format("{0} -\r\n{1}", dayNames[DayRangeStart], dayNames[DayRangeEnd]);
+                    title = string.Format("{0} - {1}", dayNames[DayRangeStart], dayNames[DayRangeEnd]);
                     break;
                 case FilterType.DateRange:
-                    title = string.Format("{0} -\r\n{1}", DateRangeStart.ToShortDateString(), DateRangeEnd.ToShortDateString());
+                    title = string.Format("{0} - {1}", DateRangeStart.ToShortDateString(), DateRangeEnd.ToShortDateString());
                     break;
             }
 
