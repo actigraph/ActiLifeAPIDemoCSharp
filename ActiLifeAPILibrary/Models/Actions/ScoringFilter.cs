@@ -14,38 +14,28 @@ namespace ActiLifeAPILibrary.Models.Actions
             /// <summary> Applies to every day of data. </summary>
             AllDays,
 
-            /// <summary>
-            /// 
-            /// </summary>
+            /// <summary> Applies to only weekdays. </summary>
             Weekdays,
             
-            /// <summary>
-            /// 
-            /// </summary>
+            /// <summary> Applies to only weekends (Saturday and Sunday). </summary>
             Weekends,
             
-            /// <summary>
-            /// 
-            /// </summary>
+            /// <summary> Applies to only a specific day of the week. </summary>
             DayOfTheWeek,
             
-            /// <summary>
-            /// 
-            /// </summary>
+            /// <summary> Applies to only a specific date. </summary>
             SpecificDate,
             
-            /// <summary>
-            /// 
-            /// </summary>
+            /// <summary> Applies to a day range (i.e. Tuesday through Friday). </summary>
             DayRange,
             
             /// <summary>
-            /// 
+            /// Applies to a date range (i.e. 2015-03-29 through 2015-04-10)
             /// </summary>
             DateRange,
 
             /// <summary>
-            /// 
+            /// This is not used.
             /// </summary>
             SpecificTime
         };
