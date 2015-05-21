@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Request
@@ -13,6 +12,7 @@ namespace ActiLifeAPILibrary.Models.Request
 	/// </summary>
 	public class RequestBase
 	{
+		/// <summary> RequestBase constructor. </summary>
 		public RequestBase()
 		{
 			//find all properties that have classes and construct them.
@@ -28,10 +28,10 @@ namespace ActiLifeAPILibrary.Models.Request
 
 			//now set all default values from DefaultValue attribute
 			foreach (PropertyInfo item in (from prop in this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-										   where prop.GetCustomAttributes(typeof(System.ComponentModel.DefaultValueAttribute), true).Length != 0
+										   where prop.GetCustomAttributes(typeof(DefaultValueAttribute), true).Length != 0
 										   select prop))
 			{
-				foreach (var attribute in item.GetCustomAttributes(typeof(System.ComponentModel.DefaultValueAttribute), true))
+				foreach (var attribute in item.GetCustomAttributes(typeof(DefaultValueAttribute), true))
 				{
 					item.SetValue(this, ((DefaultValueAttribute)attribute).Value, null);
 				}
@@ -54,14 +54,14 @@ namespace ActiLifeAPILibrary.Models.Request
 		internal bool IgnoreUtcConverstion { get; set; }
 
 		/// <summary>
-		/// Obtains JSON for the given request.  Dates formatted in ISO/UTC.  Formatting is Indented.
+        /// Obtains JSON for the given request.  Dates formatted in ISO/UTC, unless IgnoreUtcConverstion is set to true, then no conversion is done.  Formatting is Indented.
 		/// </summary>
 		/// <returns></returns>
 		public virtual string ToJson()
 		{
 			JsonSerializerSettings dateFormattingSettings = new JsonSerializerSettings
 				{
-					Formatting = Newtonsoft.Json.Formatting.Indented,
+					Formatting = Formatting.Indented,
 					DateFormatHandling = DateFormatHandling.IsoDateFormat,
 				};
 
