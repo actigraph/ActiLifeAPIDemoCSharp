@@ -90,6 +90,7 @@
     <Compile Include="Models\Actions\NhanesWtv.cs" />
     <Compile Include="Models\Actions\DataScoringResultOptions.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\Actions\RawToEpochExportOptions.cs" />
     <Compile Include="Models\Actions\ScoringFilter.cs" />
     <Compile Include="Models\Actions\USBDownload.cs" />
     <Compile Include="Models\Actions\USBIdentify.cs" />

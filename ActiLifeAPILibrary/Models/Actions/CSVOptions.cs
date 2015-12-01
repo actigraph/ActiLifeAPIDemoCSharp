@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace ActiLifeAPILibrary.Models.Actions
@@ -9,7 +6,7 @@ namespace ActiLifeAPILibrary.Models.Actions
 	/// <summary>
 	/// Options for a CSV file [API 1.9]
 	/// </summary>
-	public class CSVOptions
+    public class CSVOptions : RawToEpochExportOptions
 	{
 		/// <summary>
 		/// Includes the following information in the header.
@@ -23,19 +20,22 @@ namespace ActiLifeAPILibrary.Models.Actions
         /// Side, 
         /// Dominance</para>
 		/// </summary>
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(true)]
 		public bool IncludeMetadata { get; set; }
 
 		/// <summary>
 		/// Whether to include column headers.
 		/// </summary>
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(true)]
 		public bool IncludeColumnHeaders { get; set; }
 
 		/// <summary>
 		/// Whether to include timestamps.
 		/// </summary>
-		[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [JsonProperty(Required = Required.Default, DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(true)]
 		public bool IncludeTimestamps { get; set; }
 	}
 }
