@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>ActiGraph.ActiLifeAPILibrary</id>
+    <version>2.5</version>
+    <authors>Derek Gates, Daniel Judge</authors>
+    <owners>ActiGraph</owners>
+    <language>en-US</language>
+    <iconUrl>http://i.imgur.com/GvdBKBx.png</iconUrl>
+    <projectUrl>http://actigraphcorp.com</projectUrl>
+    <description>ActiGraph ActiLife API Library</description>
+    <summary>Library that provides an easy to use implementation of ActiLife API. This ActilifeAPILibrary handles connecting, sending and receiving data from ActiLife with public endpoints wrapped in c# methods. The Library is based on .NET 4.0 and utilizes Tasks to ensure long running tasks do not block the calling threads.</summary>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="Microsoft.Bcl" version="1.1.10" />
+      <dependency id="Microsoft.Bcl.Async" version="1.1.168" />
+      <dependency id="Microsoft.Bcl.Build" version="1.1.21" />
+    </dependencies>
+    <frameworkAssemblies>
+        <frameworkAssembly assemblyName="System.Net" targetFramework="net40-client, net40" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="bin/Release/ActiLifeAPILibrary.dll" target="lib" />
+  </files>
+</package>
